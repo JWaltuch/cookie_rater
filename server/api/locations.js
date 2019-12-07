@@ -25,10 +25,19 @@ router.post('/', async (req, res, next) => {
 router.put('/:locId', async (req, res, next) => {
   try {
     const updates = req.body
-    const locationToUpdate = await Location.update(updates, {
+    const [_, locationToUpdate] = await Location.update(updates, {
       where: {id: req.params.locId}
     })
     res.json(locationToUpdate)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.post('/', async (req, res, next) => {
+  try {
+    const newLocation = await Location.create(req.body)
+    res.json(newLocation)
   } catch (err) {
     next(err)
   }
