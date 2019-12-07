@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
+const {Review} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -11,6 +12,16 @@ router.get('/', async (req, res, next) => {
       attributes: ['id', 'email', 'username', 'type']
     })
     res.json(users)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/reviews', async (req, res, next) => {
+  try {
+    const user = await User.findOne({where: {id: req.user.id}})
+    const reviews = await user.getReviews()
+    res.json(reviews)
   } catch (err) {
     next(err)
   }

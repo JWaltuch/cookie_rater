@@ -13,6 +13,15 @@ router.get('/', async (req, res, next) => {
 
 //ADMIN ONLY
 
+router.post('/', async (req, res, next) => {
+  try {
+    const newLocation = await Location.create(req.body)
+    res.json(newLocation)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.put('/:locId', async (req, res, next) => {
   try {
     const updates = req.body
