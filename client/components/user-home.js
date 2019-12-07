@@ -10,8 +10,8 @@ import {Location} from './location'
  * COMPONENT
  */
 export class UserHome extends Component {
-  componentDidMount() {
-    this.props.getLocations()
+  async componentDidMount() {
+    await this.props.getLocations()
   }
 
   render() {
@@ -19,12 +19,12 @@ export class UserHome extends Component {
       <div>
         <h3>Welcome, {this.props.email}</h3>
         <div>
-          {this.props.locations && (
-            <div>
-              {this.props.locations.map(location => (
-                <Location key={location.id} location={location} />
-              ))}
-            </div>
+          {this.props.locations ? (
+            this.props.locations.map(location => (
+              <Location key={location.id} location={location} />
+            ))
+          ) : (
+            <div>Loading...</div>
           )}
         </div>
       </div>
