@@ -26,6 +26,7 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             <Route path="/myreviews" component={Reviews} />
+            <Route path="/reviews/:locId" component={Reviews} />
             <Route path="/users" component={Users} />
             <Route path="/" component={UserHome} />
           </Switch>

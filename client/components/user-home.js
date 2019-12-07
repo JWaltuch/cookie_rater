@@ -1,18 +1,35 @@
-import React from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+//----
+import {getLocations} from '../store/location'
+//---
+import {Location} from './location'
 
 /**
  * COMPONENT
  */
-export const UserHome = props => {
-  const {email} = props
+export class UserHome extends Component {
+  componentDidMount() {
+    this.props.getLocations()
+  }
 
-  return (
-    <div>
-      <h3>Welcome, {email}</h3>
-    </div>
-  )
+  render() {
+    return (
+      <div>
+        <h3>Welcome, {this.props.email}</h3>
+        <div>
+          {!this.props.locations || (
+            <div>
+              {this.props.locations.map(location => (
+                <Location key={location.id} location={location} />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
 }
 
 /**
@@ -20,11 +37,20 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    email: state.user.email,
+    locations: state.locations
   }
 }
 
-export default connect(mapState)(UserHome)
+const mapDispatch = dispatch => {
+  return {
+    getLocations: () => {
+      dispatch(getLocations())
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(UserHome)
 
 /**
  * PROP TYPES
