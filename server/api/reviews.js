@@ -12,10 +12,10 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:userId', async (req, res, next) => {
+router.get('/:locId', async (req, res, next) => {
   try {
-    const user = await User.findOne({where: {id: req.params.userId}})
-    const reviews = await user.getReviews()
+    const location = await Location.findOne({where: {id: req.params.locId}})
+    const reviews = await location.getReviews()
     res.json(reviews)
   } catch (err) {
     next(err)
