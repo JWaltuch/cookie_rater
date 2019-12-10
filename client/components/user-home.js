@@ -10,8 +10,8 @@ import {Location} from './location'
  * COMPONENT
  */
 export class UserHome extends Component {
-  async componentDidMount() {
-    await this.props.getLocations()
+  componentDidMount() {
+    this.props.getLocations()
   }
 
   render() {
@@ -38,7 +38,7 @@ export class UserHome extends Component {
 const mapState = state => {
   return {
     email: state.user.email,
-    locations: state.locations
+    locations: state.location
   }
 }
 
