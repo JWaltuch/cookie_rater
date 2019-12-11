@@ -21,3 +21,21 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+/* CUSTOM */
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.locations {
+  display: flex;
+  flex-direction: column;
+}
+
+.location {
+  border: black solid 1px;
+  padding: 5px;
+  margin: 5px;
+}

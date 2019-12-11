@@ -23,6 +23,13 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.(html|png|jpg|gif|jpeg|svg)$/,
+        loader: 'file-loader',
+        query: {
+          name: '[name].[ext]'
+        }
       }
     ]
   }
