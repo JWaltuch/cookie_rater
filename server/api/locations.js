@@ -11,6 +11,15 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:id', async (req, res, next) => {
+  try {
+    const location = await Location.findOne({where: {id: req.params.id}})
+    res.json(location)
+  } catch (err) {
+    next(err)
+  }
+})
+
 //ADMIN ONLY
 
 router.post('/', async (req, res, next) => {

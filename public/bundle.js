@@ -141,7 +141,9 @@ var AuthForm = function AuthForm(props) {
       displayName = props.displayName,
       handleSubmit = props.handleSubmit,
       error = props.error;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "page-top"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: handleSubmit,
     name: name
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -261,7 +263,7 @@ __webpack_require__.r(__webpack_exports__);
 var Location = function Location(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "location"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, props.location.name), props.location.notes && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.location.notes), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, props.location.name), props.location.notes && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.location.notes, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/reviews/".concat(props.location.id)
   }, "Reviews"));
 };
@@ -294,7 +296,9 @@ var Navbar = function Navbar(_ref) {
   var handleClick = _ref.handleClick,
       isLoggedIn = _ref.isLoggedIn,
       isAdmin = _ref.isAdmin;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "COOKIE RATER"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, isLoggedIn ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "header"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "COOKIE RATER"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, isLoggedIn ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/home"
   }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/"
@@ -343,16 +347,144 @@ Navbar.propTypes = {
 
 /***/ }),
 
-/***/ "./client/components/user-home.js":
-/*!****************************************!*\
-  !*** ./client/components/user-home.js ***!
-  \****************************************/
-/*! exports provided: UserHome, default */
+/***/ "./client/components/review.js":
+/*!*************************************!*\
+  !*** ./client/components/review.js ***!
+  \*************************************/
+/*! exports provided: Review */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserHome", function() { return UserHome; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Review", function() { return Review; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var Review = function Review(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "location"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, props.location.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Rating: ", props.review.rating), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Reason: ", props.review.reason));
+};
+
+/***/ }),
+
+/***/ "./client/components/reviews.js":
+/*!**************************************!*\
+  !*** ./client/components/reviews.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_review__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/review */ "./client/store/review.js");
+/* harmony import */ var _store_location__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/location */ "./client/store/location.js");
+/* harmony import */ var _review__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./review */ "./client/components/review.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+ //----
+
+
+ //----
+
+
+
+var Reviews =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Reviews, _Component);
+
+  function Reviews() {
+    _classCallCheck(this, Reviews);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Reviews).apply(this, arguments));
+  }
+
+  _createClass(Reviews, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.props.match.params === 'myreviews') {
+        this.props.getReviewsByUser();
+      } else {
+        this.props.getReviewsByLocation(this.props.match.params.locId);
+        this.props.getSingleLocation(this.props.match.params.locId);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      var reviewsToRender = this.props.match.params === 'myreviews' ? this.props.reviewsByUser : this.props.reviewsByLocation;
+      return reviewsToRender ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, reviewsToRender.map(function (review) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review__WEBPACK_IMPORTED_MODULE_4__["Review"], {
+          key: review.id,
+          review: review,
+          location: _this.props.location
+        });
+      })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading");
+    }
+  }]);
+
+  return Reviews;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+var mapState = function mapState(state, ownProps) {
+  return {
+    reviewsByUser: state.review.reviewsByUser,
+    reviewsByLocation: state.review.reviewsByLocation,
+    location: state.location.singleLocation,
+    match: ownProps.match
+  };
+};
+
+var mapDispatch = function mapDispatch(dispatch) {
+  return {
+    getReviewsByUser: function getReviewsByUser() {
+      return dispatch(Object(_store_review__WEBPACK_IMPORTED_MODULE_2__["getReviewsByUser"])());
+    },
+    getReviewsByLocation: function getReviewsByLocation(locId) {
+      return dispatch(Object(_store_review__WEBPACK_IMPORTED_MODULE_2__["getReviewsByLocation"])(locId));
+    },
+    getSingleLocation: function getSingleLocation(locId) {
+      return dispatch(Object(_store_location__WEBPACK_IMPORTED_MODULE_3__["getSingleLocation"])(locId));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapState, mapDispatch)(Reviews));
+
+/***/ }),
+
+/***/ "./client/components/user-home.js":
+/*!****************************************!*\
+  !*** ./client/components/user-home.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
@@ -425,7 +557,9 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome, ", this.props.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "page-top"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome, ", this.props.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "locations"
@@ -435,10 +569,11 @@ function (_Component) {
           location: location
         });
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading...")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(pigeon_maps__WEBPACK_IMPORTED_MODULE_5___default.a, {
+        boxClassname: "map",
         center: [this.state.mapLatitude, this.state.mapLongitude],
         zoom: 14,
         width: 600,
-        height: 400
+        height: 450
       }, this.props.locations && this.props.locations.map(function (location) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(pigeon_overlay__WEBPACK_IMPORTED_MODULE_7___default.a, {
           key: location.id,
@@ -459,10 +594,11 @@ function (_Component) {
  * CONTAINER
  */
 
+
 var mapState = function mapState(state) {
   return {
     email: state.user.email,
-    locations: state.location
+    locations: state.location.allLocations
   };
 };
 
@@ -482,6 +618,17 @@ var mapDispatch = function mapDispatch(dispatch) {
 UserHome.propTypes = {
   email: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
 };
+
+/***/ }),
+
+/***/ "./client/components/users.js":
+/*!************************************!*\
+  !*** ./client/components/users.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
 
 /***/ }),
 
@@ -553,7 +700,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components */ "./client/components/index.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
+/* harmony import */ var _components_reviews__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/reviews */ "./client/components/reviews.js");
+/* harmony import */ var _components_users__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/users */ "./client/components/users.js");
+/* harmony import */ var _components_users__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_components_users__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -571,6 +721,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
 
 
 
@@ -615,16 +767,16 @@ function (_Component) {
         component: _components__WEBPACK_IMPORTED_MODULE_4__["UserHome"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/myreviews",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["Reviews"]
+        component: _components_reviews__WEBPACK_IMPORTED_MODULE_5__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/reviews/:locId",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["Reviews"]
+        component: _components_reviews__WEBPACK_IMPORTED_MODULE_5__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["UserHome"]
       })), isAdmin && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/users",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["Users"]
+        component: _components_users__WEBPACK_IMPORTED_MODULE_6___default.a
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         component: _components__WEBPACK_IMPORTED_MODULE_4__["Login"]
       }));
@@ -650,7 +802,7 @@ var mapState = function mapState(state) {
 var mapDispatch = function mapDispatch(dispatch) {
   return {
     loadInitialData: function loadInitialData() {
-      dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_5__["me"])());
+      dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_7__["me"])());
     }
   };
 }; // The `withRouter` wrapper makes sure that updates are not blocked
@@ -738,12 +890,13 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducer, m
 /*!**********************************!*\
   !*** ./client/store/location.js ***!
   \**********************************/
-/*! exports provided: getLocations, createLocation, updateLocation, default */
+/*! exports provided: getLocations, getSingleLocation, createLocation, updateLocation, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLocations", function() { return getLocations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSingleLocation", function() { return getSingleLocation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLocation", function() { return createLocation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateLocation", function() { return updateLocation; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -756,6 +909,12 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -766,21 +925,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  */
 
 var GOT_LOCATIONS = 'GOT_LOCATIONS';
+var GOT_SINGLE_LOCATION = 'GOT_SINGLE_LOCATION';
 var CREATED_LOCATION = 'CREATED_LOCATION';
 var UPDATED_LOCATION = 'UPDATED_LOCATION';
 /**
  * INITIAL STATE
  */
 
-var locations = [];
-/**
- * ACTION CREATORS
- */
+var locations = {
+  allLocations: [],
+  singleLocation: []
+  /**
+   * ACTION CREATORS
+   */
+
+};
 
 var gotLocations = function gotLocations(newLocations) {
   return {
     type: GOT_LOCATIONS,
     newLocations: newLocations
+  };
+};
+
+var gotSingleLocation = function gotSingleLocation(location) {
+  return {
+    type: GOT_SINGLE_LOCATION,
+    location: location
   };
 };
 
@@ -845,7 +1016,7 @@ var getLocations = function getLocations() {
     }()
   );
 };
-var createLocation = function createLocation(locationInfo) {
+var getSingleLocation = function getSingleLocation(id) {
   return (
     /*#__PURE__*/
     function () {
@@ -860,12 +1031,12 @@ var createLocation = function createLocation(locationInfo) {
               case 0:
                 _context2.prev = 0;
                 _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/locations', locationInfo);
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/locations/".concat(id));
 
               case 3:
                 _ref4 = _context2.sent;
                 data = _ref4.data;
-                dispatch(createdLocations(data));
+                dispatch(gotSingleLocation(data));
                 _context2.next = 11;
                 break;
 
@@ -888,7 +1059,7 @@ var createLocation = function createLocation(locationInfo) {
     }()
   );
 };
-var updateLocation = function updateLocation(locId, locationInfo) {
+var createLocation = function createLocation(locationInfo) {
   return (
     /*#__PURE__*/
     function () {
@@ -903,12 +1074,12 @@ var updateLocation = function updateLocation(locId, locationInfo) {
               case 0:
                 _context3.prev = 0;
                 _context3.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/locations/".concat(locId), locationInfo);
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/locations', locationInfo);
 
               case 3:
                 _ref6 = _context3.sent;
                 data = _ref6.data;
-                dispatch(updatedLocations(data));
+                dispatch(createdLocations(data));
                 _context3.next = 11;
                 break;
 
@@ -931,6 +1102,49 @@ var updateLocation = function updateLocation(locId, locationInfo) {
     }()
   );
 };
+var updateLocation = function updateLocation(locId, locationInfo) {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref7 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee4(dispatch) {
+        var _ref8, data;
+
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                _context4.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/locations/".concat(locId), locationInfo);
+
+              case 3:
+                _ref8 = _context4.sent;
+                data = _ref8.data;
+                dispatch(updatedLocations(data));
+                _context4.next = 11;
+                break;
+
+              case 8:
+                _context4.prev = 8;
+                _context4.t0 = _context4["catch"](0);
+                console.error(_context4.t0);
+
+              case 11:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, null, [[0, 8]]);
+      }));
+
+      return function (_x4) {
+        return _ref7.apply(this, arguments);
+      };
+    }()
+  );
+};
 /**
  * REDUCER
  */
@@ -941,14 +1155,23 @@ var updateLocation = function updateLocation(locId, locationInfo) {
 
   switch (action.type) {
     case GOT_LOCATIONS:
-      return action.newLocations;
+      return _objectSpread({}, state, {
+        allLocations: action.newLocations
+      });
+
+    case GOT_SINGLE_LOCATION:
+      return _objectSpread({}, state, {
+        singleLocation: action.location
+      });
 
     case CREATED_LOCATION:
       {
         var newLocations = _toConsumableArray(state);
 
         newLocations.push(action.location);
-        return newLocations;
+        return _objectSpread({}, state, {
+          allLocations: newLocations
+        });
       }
 
     case UPDATED_LOCATION:
@@ -957,7 +1180,9 @@ var updateLocation = function updateLocation(locId, locationInfo) {
           return location.id !== action.location.id;
         });
 
-        return _newLocations;
+        return _objectSpread({}, state, {
+          allLocations: _newLocations
+        });
       }
 
     default:
@@ -971,13 +1196,13 @@ var updateLocation = function updateLocation(locId, locationInfo) {
 /*!********************************!*\
   !*** ./client/store/review.js ***!
   \********************************/
-/*! exports provided: getReviewsByUser, getReviewsByLoction, createReview, destroyReview, default */
+/*! exports provided: getReviewsByUser, getReviewsByLocation, createReview, destroyReview, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getReviewsByUser", function() { return getReviewsByUser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getReviewsByLoction", function() { return getReviewsByLoction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getReviewsByLocation", function() { return getReviewsByLocation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createReview", function() { return createReview; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "destroyReview", function() { return destroyReview; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -1097,7 +1322,7 @@ var getReviewsByUser = function getReviewsByUser() {
     }()
   );
 };
-var getReviewsByLoction = function getReviewsByLoction(locId) {
+var getReviewsByLocation = function getReviewsByLocation(locId) {
   return (
     /*#__PURE__*/
     function () {
@@ -1112,7 +1337,7 @@ var getReviewsByLoction = function getReviewsByLoction(locId) {
               case 0:
                 _context2.prev = 0;
                 _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/reviews/reviews/".concat(locId));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/reviews/".concat(locId));
 
               case 3:
                 _ref4 = _context2.sent;

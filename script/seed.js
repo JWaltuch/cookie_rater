@@ -158,14 +158,14 @@ async function seed() {
       rating: 7,
       reason:
         'Insomnia cookies may not be made with fancy chocolate or baked by gourmet chefs, but they make a solid, classic chocolate chip cookie that has melty chocolate chips and a soft consistency. My one issue is that, compared to the PERFECT cookie, it might be a bit too doughy',
-      locationId: 1,
+      locationId: 2,
       userId: 1
     }),
     Review.create({
       rating: 10,
       reason:
         'The perfect cookie. Soft, but not doughy on the outside, crispy and golden on the outside, decent chocolate chips.',
-      locationId: 2,
+      locationId: 1,
       userId: 1
     })
   ])

@@ -13,7 +13,7 @@ import Overlay from 'pigeon-overlay'
 /**
  * COMPONENT
  */
-export class UserHome extends Component {
+class UserHome extends Component {
   constructor(props) {
     super(props)
     this.state = {mapLatitude: 40.739936, mapLongitude: -73.995801}
@@ -24,7 +24,7 @@ export class UserHome extends Component {
 
   render() {
     return (
-      <div>
+      <div className="page-top">
         <h3>Welcome, {this.props.email}</h3>
         <div className="container">
           <div className="locations">
@@ -37,10 +37,11 @@ export class UserHome extends Component {
             )}
           </div>
           <Map
+            boxClassname="map"
             center={[this.state.mapLatitude, this.state.mapLongitude]}
             zoom={14}
             width={600}
-            height={400}
+            height={450}
           >
             {this.props.locations &&
               this.props.locations.map(location => (
@@ -70,7 +71,7 @@ export class UserHome extends Component {
 const mapState = state => {
   return {
     email: state.user.email,
-    locations: state.location
+    locations: state.location.allLocations
   }
 }
 

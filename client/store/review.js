@@ -36,9 +36,9 @@ export const getReviewsByUser = () => async dispatch => {
   }
 }
 
-export const getReviewsByLoction = locId => async dispatch => {
+export const getReviewsByLocation = locId => async dispatch => {
   try {
-    const {data} = await axios.get(`/api/reviews/reviews/${locId}`)
+    const {data} = await axios.get(`/api/reviews/${locId}`)
     dispatch(gotReviewsByLocation(data))
   } catch (err) {
     console.error(err)

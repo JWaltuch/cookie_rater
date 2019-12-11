@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const {Review} = require('../db/models')
 const {User} = require('../db/models')
+const {Location} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {

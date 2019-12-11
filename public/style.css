@@ -24,6 +24,8 @@ form div {
 
 /* CUSTOM */
 
+/* LOCATIONS  */
+
 .container {
   display: flex;
   justify-content: space-evenly;
@@ -38,4 +40,16 @@ form div {
   border: black solid 1px;
   padding: 5px;
   margin: 5px;
+}
+
+/* OTHER */
+
+.header {
+  /* position: fixed; */
+  display: flex;
+  align-items: center;
+}
+
+.map {
+  position: fixed;
 }
