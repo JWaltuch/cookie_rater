@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Button, Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 //----
@@ -16,10 +16,24 @@ import Overlay from 'pigeon-overlay'
 class UserHome extends Component {
   constructor(props) {
     super(props)
-    this.state = {mapLatitude: 40.739936, mapLongitude: -73.995801}
+    this.state = {mapLatitude: 40.739936, mapLongitude: -73.995801, zoom: 14}
   }
   componentDidMount() {
     this.props.getLocations()
+  }
+
+  zoomIn = () => {
+    let currentZoom = this.state.zoom
+    this.setState({
+      zoom: Math.min(currentZoom + 1, 14)
+    })
+  }
+
+  zoomOut = () => {
+    let currentZoom = this.state.zoom
+    this.setState({
+      zoom: Math.max(currentZoom - 1, 1)
+    })
   }
 
   render() {
@@ -39,7 +53,7 @@ class UserHome extends Component {
           <Map
             boxClassname="map"
             center={[this.state.mapLatitude, this.state.mapLongitude]}
-            zoom={14}
+            zoom={this.state.zoom}
             width={600}
             height={450}
           >
@@ -59,6 +73,8 @@ class UserHome extends Component {
               ))}
             {/* <Marker anchor={[50.874, 4.6947]} payload={1} /> */}
           </Map>
+          <Button onClick={() => this.zoomIn()}>Zoom In</Button>
+          <Button onClick={() => this.zoomOut()}>Zoom Out</Button>
         </div>
       </div>
     )
