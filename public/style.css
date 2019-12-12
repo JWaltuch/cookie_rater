@@ -17,7 +17,7 @@ nav a {
   margin: 1em;
 }
 
-form div {
+.auth-form div {
   margin: 1em;
   display: inline-block;
 }
@@ -54,6 +54,11 @@ form div {
   background-color: tan;
 }
 
+.page-top {
+  position: relative;
+  top: 60px;
+}
+
 .map-panel {
   display: flex;
   flex-direction: column;
@@ -61,7 +66,18 @@ form div {
   margin-left: 25vw;
 }
 
-.page-top {
-  position: relative;
-  top: 60px;
+/* FORMS */
+
+.reason-input {
+  width: 500px;
+  height: 250px;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-form div {
+  margin: 5px;
 }

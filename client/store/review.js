@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../history'
 
 /**
  * ACTION TYPES
@@ -49,6 +50,7 @@ export const createReview = reviewBody => async dispatch => {
   try {
     const {data} = await axios.post('/api/reviews', reviewBody)
     dispatch(createdReview(data))
+    history.push(`/reviews/${reviewBody.locationId}`)
   } catch (err) {
     console.error(err)
   }

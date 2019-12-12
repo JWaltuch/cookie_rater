@@ -13,7 +13,8 @@ export const Location = props => {
           <br />
         </div>
       )}
-      <Link to={`/reviews/${props.location.id}`}>Reviews</Link>
+      <Link to={`/reviews/${props.location.id}`}>Reviews </Link>
+      <Link to={`/reviews/${props.location.id}/add`}> Add Review</Link>
     </div>
   )
 }

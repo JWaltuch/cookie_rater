@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import Reviews from './components/reviews'
 import Users from './components/users'
+import ReviewForm from './components/review-form'
 import {me} from './store'
 
 /**
@@ -16,7 +17,7 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn, isAdmin} = this.props
+    const {isLoggedIn, isAdmin, isApproved} = this.props
 
     return (
       <Switch>
@@ -28,13 +29,16 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             <Route path="/myreviews" component={Reviews} />
+            {isApproved && (
+              <Route exact path="/reviews/:locId/add" component={ReviewForm} />
+            )}
             <Route path="/reviews/:locId" component={Reviews} />
             <Route path="/" component={UserHome} />
           </Switch>
         )}
         {isAdmin && (
           <Switch>
-            {/* Routes placed here are only available after logging in */}
+            {/* Routes placed here are only available if admin */}
             <Route path="/users" component={Users} />
           </Switch>
         )}
@@ -53,7 +57,8 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
-    isAdmin: state.user.type === 'admin'
+    isAdmin: state.user.type === 'admin',
+    isApproved: state.user.type === 'approved'
   }
 }
 

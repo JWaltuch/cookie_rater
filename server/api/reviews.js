@@ -26,8 +26,9 @@ router.get('/:locId', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const user = await User.findOne({where: {id: req.user.id}})
-    const newReview = Review.create(req.body)
-    await user.addReview(newReview)
+    const newReview = await Review.create(req.body)
+    console.log(newReview)
+    await newReview.setUser(user)
     res.json(newReview)
   } catch (err) {
     next(err)
