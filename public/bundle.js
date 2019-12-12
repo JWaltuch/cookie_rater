@@ -549,7 +549,7 @@ function (_Component) {
       var currentZoom = _this.state.zoom;
 
       _this.setState({
-        zoom: Math.min(currentZoom + 1, 14)
+        zoom: Math.min(currentZoom + 1, 18)
       });
     });
 
@@ -566,6 +566,8 @@ function (_Component) {
       mapLongitude: -73.995801,
       zoom: 14
     };
+    _this.zoomIn = _this.zoomIn.bind(_assertThisInitialized(_this));
+    _this.zoomOut = _this.zoomOut.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -584,13 +586,15 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome, ", this.props.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "locations"
+        className: "panel"
       }, this.props.locations ? this.props.locations.map(function (location) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_location__WEBPACK_IMPORTED_MODULE_4__["Location"], {
           key: location.id,
           location: location
         });
-      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading...")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(pigeon_maps__WEBPACK_IMPORTED_MODULE_5___default.a, {
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading...")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "panel"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(pigeon_maps__WEBPACK_IMPORTED_MODULE_5___default.a, {
         boxClassname: "map",
         center: [this.state.mapLatitude, this.state.mapLongitude],
         zoom: this.state.zoom,
@@ -606,15 +610,15 @@ function (_Component) {
           height: 30,
           alt: ""
         }));
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Button"], {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
           return _this2.zoomIn();
         }
-      }, "Zoom In"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Button"], {
+      }, "Zoom In"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
           return _this2.zoomOut();
         }
-      }, "Zoom Out")));
+      }, "Zoom Out"))));
     }
   }]);
 

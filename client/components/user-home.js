@@ -1,4 +1,4 @@
-import React, {Button, Component} from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 //----
@@ -17,6 +17,8 @@ class UserHome extends Component {
   constructor(props) {
     super(props)
     this.state = {mapLatitude: 40.739936, mapLongitude: -73.995801, zoom: 14}
+    this.zoomIn = this.zoomIn.bind(this)
+    this.zoomOut = this.zoomOut.bind(this)
   }
   componentDidMount() {
     this.props.getLocations()
@@ -25,7 +27,7 @@ class UserHome extends Component {
   zoomIn = () => {
     let currentZoom = this.state.zoom
     this.setState({
-      zoom: Math.min(currentZoom + 1, 14)
+      zoom: Math.min(currentZoom + 1, 18)
     })
   }
 
@@ -41,7 +43,7 @@ class UserHome extends Component {
       <div className="page-top">
         <h3>Welcome, {this.props.email}</h3>
         <div className="container">
-          <div className="locations">
+          <div className="panel">
             {this.props.locations ? (
               this.props.locations.map(location => (
                 <Location key={location.id} location={location} />
@@ -50,31 +52,33 @@ class UserHome extends Component {
               <div>Loading...</div>
             )}
           </div>
-          <Map
-            boxClassname="map"
-            center={[this.state.mapLatitude, this.state.mapLongitude]}
-            zoom={this.state.zoom}
-            width={600}
-            height={450}
-          >
-            {this.props.locations &&
-              this.props.locations.map(location => (
-                <Overlay
-                  key={location.id}
-                  anchor={[location.latitude, location.longitude]}
-                >
-                  <img
-                    src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png"
-                    width={30}
-                    height={30}
-                    alt=""
-                  />
-                </Overlay>
-              ))}
-            {/* <Marker anchor={[50.874, 4.6947]} payload={1} /> */}
-          </Map>
-          <Button onClick={() => this.zoomIn()}>Zoom In</Button>
-          <Button onClick={() => this.zoomOut()}>Zoom Out</Button>
+          <div className="panel">
+            <Map
+              boxClassname="map"
+              center={[this.state.mapLatitude, this.state.mapLongitude]}
+              zoom={this.state.zoom}
+              width={600}
+              height={450}
+            >
+              {this.props.locations &&
+                this.props.locations.map(location => (
+                  <Overlay
+                    key={location.id}
+                    anchor={[location.latitude, location.longitude]}
+                  >
+                    <img
+                      src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png"
+                      width={30}
+                      height={30}
+                      alt=""
+                    />
+                  </Overlay>
+                ))}
+              {/* <Marker anchor={[50.874, 4.6947]} payload={1} /> */}
+            </Map>
+            <button onClick={() => this.zoomIn()}>Zoom In</button>
+            <button onClick={() => this.zoomOut()}>Zoom Out</button>
+          </div>
         </div>
       </div>
     )

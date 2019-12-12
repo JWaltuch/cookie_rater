@@ -31,7 +31,7 @@ form div {
   justify-content: space-evenly;
 }
 
-.locations {
+.panel {
   display: flex;
   flex-direction: column;
 }
