@@ -61,9 +61,8 @@ class UserHome extends Component {
               <div>Loading...</div>
             )}
           </div>
-          <div className="panel">
+          <div className="map-panel">
             <Map
-              boxClassname="map"
               center={[this.state.mapLatitude, this.state.mapLongitude]}
               zoom={this.state.zoom}
               width={600}

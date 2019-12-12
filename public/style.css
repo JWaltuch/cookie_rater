@@ -34,6 +34,7 @@ form div {
 .panel {
   display: flex;
   flex-direction: column;
+  margin-right: 60vw;
 }
 
 .location {
@@ -45,11 +46,22 @@ form div {
 /* OTHER */
 
 .header {
-  /* position: fixed; */
+  position: fixed;
   display: flex;
   align-items: center;
+  z-index: 1;
+  top: 0px;
+  background-color: tan;
 }
 
-.map {
+.map-panel {
+  display: flex;
+  flex-direction: column;
   position: fixed;
+  margin-left: 25vw;
+}
+
+.page-top {
+  position: relative;
+  top: 60px;
 }

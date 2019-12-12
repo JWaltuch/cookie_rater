@@ -22,7 +22,7 @@ class Reviews extends Component {
         ? this.props.reviewsByUser
         : this.props.reviewsByLocation
     return reviewsToRender ? (
-      <div>
+      <div className="page-top">
         {reviewsToRender.map(review => (
           <Review
             key={review.id}

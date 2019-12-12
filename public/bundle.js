@@ -440,7 +440,9 @@ function (_Component) {
       var _this = this;
 
       var reviewsToRender = this.props.match.params === 'myreviews' ? this.props.reviewsByUser : this.props.reviewsByLocation;
-      return reviewsToRender ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, reviewsToRender.map(function (review) {
+      return reviewsToRender ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "page-top"
+      }, reviewsToRender.map(function (review) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review__WEBPACK_IMPORTED_MODULE_4__["Review"], {
           key: review.id,
           review: review,
@@ -607,9 +609,8 @@ function (_Component) {
           zoomToLocation: _this2.zoomToLocation
         });
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading...")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "panel"
+        className: "map-panel"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(pigeon_maps__WEBPACK_IMPORTED_MODULE_5___default.a, {
-        boxClassname: "map",
         center: [this.state.mapLatitude, this.state.mapLongitude],
         zoom: this.state.zoom,
         width: 600,
