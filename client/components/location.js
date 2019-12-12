@@ -2,12 +2,18 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 export const Location = props => {
+  let location = props.location
   return (
-    <div className="location">
-      <h2>{props.location.name}</h2>
-      {props.location.notes && (
+    <div
+      className="location"
+      onClick={() =>
+        props.zoomToLocation(location.latitude, location.longitude)
+      }
+    >
+      <h2>{location.name}</h2>
+      {location.notes && (
         <div>
-          {props.location.notes}
+          {location.notes}
           <br />
           <br />
         </div>

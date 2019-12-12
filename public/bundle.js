@@ -261,9 +261,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Location = function Location(props) {
+  var location = props.location;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "location"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, props.location.name), props.location.notes && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.location.notes, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "location",
+    onClick: function onClick() {
+      return props.zoomToLocation(location.latitude, location.longitude);
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, location.name), location.notes && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, location.notes, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/reviews/".concat(props.location.id)
   }, "Reviews"));
 };
@@ -561,6 +565,14 @@ function (_Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "zoomToLocation", function (lat, _long) {
+      _this.setState({
+        mapLatitude: lat,
+        mapLongitude: _long,
+        zoom: 18
+      });
+    });
+
     _this.state = {
       mapLatitude: 40.739936,
       mapLongitude: -73.995801,
@@ -568,6 +580,7 @@ function (_Component) {
     };
     _this.zoomIn = _this.zoomIn.bind(_assertThisInitialized(_this));
     _this.zoomOut = _this.zoomOut.bind(_assertThisInitialized(_this));
+    _this.zoomToLocation = _this.zoomToLocation.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -590,7 +603,8 @@ function (_Component) {
       }, this.props.locations ? this.props.locations.map(function (location) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_location__WEBPACK_IMPORTED_MODULE_4__["Location"], {
           key: location.id,
-          location: location
+          location: location,
+          zoomToLocation: _this2.zoomToLocation
         });
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading...")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "panel"

@@ -7,167 +7,167 @@ async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const users = await Promise.all([
-    User.create({
+  const users = await User.bulkCreate([
+    {
       username: 'jenna',
       email: 'jenna@jenna.com',
       password: 'jenna',
       type: 'admin'
-    }),
-    User.create({
+    },
+    {
       username: 'clark',
       email: 'clark@clark.com',
       password: '1234',
       type: 'approved'
-    }),
-    User.create({
+    },
+    {
       username: 'bo',
       email: 'bo@bo.com',
       password: '1234',
       type: null
-    })
+    }
   ])
 
-  const locations = await Promise.all([
-    Location.create({
+  const locations = await Location.bulkCreate([
+    {
       name: 'Clinton St. Baking Company',
       address: '4 Clinton St, New York, NY 10002',
       latitude: 40.721589,
       longitude: -73.983775
-    }),
-    Location.create({
+    },
+    {
       name: 'Insomnia Cookies',
       address: '76 Pearl St, New York, NY 10004',
       latitude: 40.712047,
       longitude: -74.011427,
       notes: 'Multiple locations'
-    }),
-    Location.create({
+    },
+    {
       name: 'Sprinkles Cupcakes',
       address: '780 Lexington Ave, New York, NY 10065',
       latitude: 40.76326,
       longitude: -73.96766
-    }),
-    Location.create({
+    },
+    {
       name: 'Pret A Manger',
       address: '1 Astor Pl, New York, NY 10003',
       latitude: 40.73016,
       longitude: -73.9923,
       notes: 'Multiple locations'
-    }),
-    Location.create({
+    },
+    {
       name: 'Ovenly',
       address: '230 Park Ave, New York, NY 10169',
       latitude: 40.7544,
       longitude: -73.97683,
       notes: 'Multiple locations'
-    }),
-    Location.create({
+    },
+    {
       name: 'Baked',
       address: '359 Van Brunt St, Brooklyn, NY 11231',
       latitude: 40.67687,
       longitude: -74.01325
-    }),
-    Location.create({
+    },
+    {
       name: 'Seven Grams Caffe',
       address: '780 Lexington Ave, New York, NY 10065',
       latitude: 40.74398,
       longitude: -73.98587
-    }),
-    Location.create({
+    },
+    {
       name: 'Culture Espresso',
       address: '247 W 36th St, New York, NY 10018',
       latitude: 40.75325,
       longitude: -73.99126
-    }),
-    Location.create({
+    },
+    {
       name: 'EJs Luncheonette',
       address: '1271 3rd Ave, New York, NY 10021',
       latitude: 40.77044,
       longitude: -73.95972
-    }),
-    Location.create({
+    },
+    {
       name: 'Mottley Kitchen',
       address: '402 E 140th St, The Bronx, NY 10454',
       latitude: 40.81016,
       longitude: -73.92166
-    }),
-    Location.create({
+    },
+    {
       name: 'Spot Dessert Bar',
       address: '13 St Marks Pl, New York, NY 10003',
       latitude: 40.72938,
       longitude: -73.98892,
       notes: 'Multiple locations'
-    }),
-    Location.create({
+    },
+    {
       name: 'Michaeli Bakery',
       address: '115A Division St, New York, NY 10002',
       latitude: 40.71434,
       longitude: -73.99205
-    }),
-    Location.create({
+    },
+    {
       name: 'Mollys Cupcakes',
       address: '228 Bleecker St, New York, NY 10014',
       latitude: 40.73011,
       longitude: -74.00251
-    }),
-    Location.create({
+    },
+    {
       name: 'The Standard Grill',
       address: '848 Washington St, New York, NY 10014',
       latitude: 40.74066,
       longitude: -74.00801,
       notes: 'Fancy cookies. They come in threes, with milk'
-    }),
-    Location.create({
+    },
+    {
       name: 'DoubleTree by Hilton Hotel',
       address: '128 W 29th St, New York, NY 10001',
       latitude: 40.74698,
       longitude: -73.99138,
       notes:
         'First cookies to be baked in space! Available at multiple locations'
-    }),
-    Location.create({
+    },
+    {
       name: 'Dominique Ansel',
       address: '189 Spring St, New York, NY 10012',
       latitude: 40.72516,
       longitude: -74.00296
-    }),
-    Location.create({
+    },
+    {
       name: 'Macaron Parlour',
       address: '44 Hester St, New York, NY 10002',
       latitude: 40.7155,
       longitude: -73.99022,
       notes: 'XL Pecan Chocolate Chip'
-    }),
-    Location.create({
+    },
+    {
       name: 'Kreuther Handcrafted Chocolate',
       address: '43 W 42nd St, New York, NY 10036',
       latitude: 40.75447,
       longitude: -73.98275
-    }),
-    Location.create({
+    },
+    {
       name: 'The Wooly Daily',
       address: '11 Barclay St, New York, NY 10007',
       latitude: 40.71244,
       longitude: -74.00829
-    })
+    }
   ])
 
-  const reviews = await Promise.all([
-    Review.create({
+  const reviews = await Review.bulkCreate([
+    {
       rating: 7,
       reason:
         'Insomnia cookies may not be made with fancy chocolate or baked by gourmet chefs, but they make a solid, classic chocolate chip cookie that has melty chocolate chips and a soft consistency. My one issue is that, compared to the PERFECT cookie, it might be a bit too doughy',
       locationId: 2,
       userId: 1
-    }),
-    Review.create({
+    },
+    {
       rating: 10,
       reason:
         'The perfect cookie. Soft, but not doughy on the outside, crispy and golden on the outside, decent chocolate chips.',
       locationId: 1,
       userId: 1
-    })
+    }
   ])
 
   console.log(

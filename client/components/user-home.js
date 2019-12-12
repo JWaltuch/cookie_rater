@@ -19,6 +19,7 @@ class UserHome extends Component {
     this.state = {mapLatitude: 40.739936, mapLongitude: -73.995801, zoom: 14}
     this.zoomIn = this.zoomIn.bind(this)
     this.zoomOut = this.zoomOut.bind(this)
+    this.zoomToLocation = this.zoomToLocation.bind(this)
   }
   componentDidMount() {
     this.props.getLocations()
@@ -38,6 +39,10 @@ class UserHome extends Component {
     })
   }
 
+  zoomToLocation = (lat, long) => {
+    this.setState({mapLatitude: lat, mapLongitude: long, zoom: 18})
+  }
+
   render() {
     return (
       <div className="page-top">
@@ -46,7 +51,11 @@ class UserHome extends Component {
           <div className="panel">
             {this.props.locations ? (
               this.props.locations.map(location => (
-                <Location key={location.id} location={location} />
+                <Location
+                  key={location.id}
+                  location={location}
+                  zoomToLocation={this.zoomToLocation}
+                />
               ))
             ) : (
               <div>Loading...</div>
