@@ -8,7 +8,7 @@ import {Review} from './review'
 
 class Reviews extends Component {
   componentDidMount() {
-    if (this.props.match.params === 'myreviews') {
+    if (this.props.match.path === '/myreviews') {
       this.props.getReviewsByUser()
     } else {
       this.props.getReviewsByLocation(this.props.match.params.locId)
@@ -18,12 +18,16 @@ class Reviews extends Component {
 
   render() {
     let reviewsToRender =
-      this.props.match.params === 'myreviews'
+      this.props.match.path === '/myreviews'
         ? this.props.reviewsByUser
         : this.props.reviewsByLocation
+    let title =
+      this.props.match.path === '/myreviews'
+        ? 'My Reviews'
+        : `${this.props.location.name} || Average Rating: TBI`
     return reviewsToRender ? (
       <div className="page-top">
-        <h2>{this.props.location.name} || Average Rating: TBI</h2>
+        <h2>{title}</h2>
         {reviewsToRender.map(review => (
           <Review key={review.id} review={review} />
         ))}

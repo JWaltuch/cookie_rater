@@ -270,7 +270,7 @@ var Location = function Location(props) {
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, location.name), location.notes && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, location.notes, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/reviews/".concat(props.location.id)
-  }, "Reviews "), props.userIsApproved && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, "Reviews | "), props.userIsApproved && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/reviews/".concat(props.location.id, "/add")
   }, " Add Review"));
 };
@@ -576,7 +576,7 @@ function (_Component) {
   _createClass(Reviews, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      if (this.props.match.params === 'myreviews') {
+      if (this.props.match.path === '/myreviews') {
         this.props.getReviewsByUser();
       } else {
         this.props.getReviewsByLocation(this.props.match.params.locId);
@@ -586,10 +586,11 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var reviewsToRender = this.props.match.params === 'myreviews' ? this.props.reviewsByUser : this.props.reviewsByLocation;
+      var reviewsToRender = this.props.match.path === '/myreviews' ? this.props.reviewsByUser : this.props.reviewsByLocation;
+      var title = this.props.match.path === '/myreviews' ? 'My Reviews' : "".concat(this.props.location.name, " || Average Rating: TBI");
       return reviewsToRender ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-top"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.location.name, " || Average Rating: TBI"), reviewsToRender.map(function (review) {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), reviewsToRender.map(function (review) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review__WEBPACK_IMPORTED_MODULE_4__["Review"], {
           key: review.id,
           review: review
