@@ -70,6 +70,7 @@ class UserHome extends Component {
                   key={location.id}
                   location={location}
                   zoomToLocation={this.zoomToLocation}
+                  userIsApproved={this.props.userIsApproved}
                 />
               ))
             ) : (
@@ -116,6 +117,8 @@ class UserHome extends Component {
 const mapState = state => {
   return {
     email: state.user.email,
+    userIsApproved:
+      state.user.type === 'approved' || state.user.type === 'admin',
     locations: state.location.allLocations
   }
 }

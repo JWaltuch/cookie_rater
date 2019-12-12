@@ -58,7 +58,7 @@ const mapState = state => {
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
     isAdmin: state.user.type === 'admin',
-    isApproved: state.user.type === 'approved'
+    isApproved: state.user.type === 'approved' || state.user.type === 'admin'
   }
 }
 

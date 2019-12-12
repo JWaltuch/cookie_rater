@@ -270,7 +270,7 @@ var Location = function Location(props) {
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, location.name), location.notes && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, location.notes, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/reviews/".concat(props.location.id)
-  }, "Reviews "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, "Reviews "), props.userIsApproved && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/reviews/".concat(props.location.id, "/add")
   }, " Add Review"));
 };
@@ -761,7 +761,8 @@ function (_Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_location__WEBPACK_IMPORTED_MODULE_4__["Location"], {
           key: location.id,
           location: location,
-          zoomToLocation: _this2.zoomToLocation
+          zoomToLocation: _this2.zoomToLocation,
+          userIsApproved: _this2.props.userIsApproved
         });
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading...")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "map-panel"
@@ -805,6 +806,7 @@ function (_Component) {
 var mapState = function mapState(state) {
   return {
     email: state.user.email,
+    userIsApproved: state.user.type === 'approved' || state.user.type === 'admin',
     locations: state.location.allLocations
   };
 };
@@ -1010,7 +1012,7 @@ var mapState = function mapState(state) {
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
     isAdmin: state.user.type === 'admin',
-    isApproved: state.user.type === 'approved'
+    isApproved: state.user.type === 'approved' || state.user.type === 'admin'
   };
 };
 

@@ -14,7 +14,9 @@ export const Location = props => {
         </div>
       )}
       <Link to={`/reviews/${props.location.id}`}>Reviews </Link>
-      <Link to={`/reviews/${props.location.id}/add`}> Add Review</Link>
+      {props.userIsApproved && (
+        <Link to={`/reviews/${props.location.id}/add`}> Add Review</Link>
+      )}
     </div>
   )
 }
