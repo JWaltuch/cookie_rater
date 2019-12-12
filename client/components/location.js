@@ -4,12 +4,7 @@ import {Link} from 'react-router-dom'
 export const Location = props => {
   let location = props.location
   return (
-    <div
-      className="location"
-      onClick={() =>
-        props.zoomToLocation(location.latitude, location.longitude)
-      }
-    >
+    <div className="location" onClick={() => props.zoomToLocation(location)}>
       <h2>{location.name}</h2>
       {location.notes && (
         <div>

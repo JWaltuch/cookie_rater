@@ -23,12 +23,9 @@ class Reviews extends Component {
         : this.props.reviewsByLocation
     return reviewsToRender ? (
       <div className="page-top">
+        <h2>{this.props.location.name} || Average Rating: TBI</h2>
         {reviewsToRender.map(review => (
-          <Review
-            key={review.id}
-            review={review}
-            location={this.props.location}
-          />
+          <Review key={review.id} review={review} />
         ))}
       </div>
     ) : (

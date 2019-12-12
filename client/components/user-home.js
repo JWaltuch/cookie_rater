@@ -16,10 +16,16 @@ import Overlay from 'pigeon-overlay'
 class UserHome extends Component {
   constructor(props) {
     super(props)
-    this.state = {mapLatitude: 40.739936, mapLongitude: -73.995801, zoom: 14}
+    this.state = {
+      mapLatitude: 40.739936,
+      mapLongitude: -73.995801,
+      zoom: 14,
+      clickedLocation: ''
+    }
     this.zoomIn = this.zoomIn.bind(this)
     this.zoomOut = this.zoomOut.bind(this)
     this.zoomToLocation = this.zoomToLocation.bind(this)
+    this.handleMarkerClick = this.handleMarkerClick.bind(this)
   }
   componentDidMount() {
     this.props.getLocations()
@@ -39,8 +45,17 @@ class UserHome extends Component {
     })
   }
 
-  zoomToLocation = (lat, long) => {
-    this.setState({mapLatitude: lat, mapLongitude: long, zoom: 18})
+  zoomToLocation = location => {
+    this.setState({
+      mapLatitude: location.latitude,
+      mapLongitude: location.longitude,
+      zoom: 18,
+      clickedLocation: location.name
+    })
+  }
+
+  handleMarkerClick = locName => {
+    this.setState({clickedLocation: locName})
   }
 
   render() {
@@ -62,6 +77,7 @@ class UserHome extends Component {
             )}
           </div>
           <div className="map-panel">
+            <div>{this.state.clickedLocation}</div>
             <Map
               center={[this.state.mapLatitude, this.state.mapLongitude]}
               zoom={this.state.zoom}
@@ -79,6 +95,7 @@ class UserHome extends Component {
                       width={30}
                       height={30}
                       alt=""
+                      onClick={() => this.handleMarkerClick(location.name)}
                     />
                   </Overlay>
                 ))}

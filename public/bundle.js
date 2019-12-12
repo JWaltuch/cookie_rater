@@ -265,7 +265,7 @@ var Location = function Location(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "location",
     onClick: function onClick() {
-      return props.zoomToLocation(location.latitude, location.longitude);
+      return props.zoomToLocation(location);
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, location.name), location.notes && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, location.notes, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/reviews/".concat(props.location.id)
@@ -367,7 +367,7 @@ __webpack_require__.r(__webpack_exports__);
 var Review = function Review(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "location"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, props.location.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Rating: ", props.review.rating), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Reason: ", props.review.reason));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Rating: ", props.review.rating), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Reason: ", props.review.reason));
 };
 
 /***/ }),
@@ -437,16 +437,13 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
-
       var reviewsToRender = this.props.match.params === 'myreviews' ? this.props.reviewsByUser : this.props.reviewsByLocation;
       return reviewsToRender ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-top"
-      }, reviewsToRender.map(function (review) {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.location.name, " || Average Rating: TBI"), reviewsToRender.map(function (review) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review__WEBPACK_IMPORTED_MODULE_4__["Review"], {
           key: review.id,
-          review: review,
-          location: _this.props.location
+          review: review
         });
       })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading");
     }
@@ -567,22 +564,31 @@ function (_Component) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "zoomToLocation", function (lat, _long) {
+    _defineProperty(_assertThisInitialized(_this), "zoomToLocation", function (location) {
       _this.setState({
-        mapLatitude: lat,
-        mapLongitude: _long,
-        zoom: 18
+        mapLatitude: location.latitude,
+        mapLongitude: location.longitude,
+        zoom: 18,
+        clickedLocation: location.name
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleMarkerClick", function (locName) {
+      _this.setState({
+        clickedLocation: locName
       });
     });
 
     _this.state = {
       mapLatitude: 40.739936,
       mapLongitude: -73.995801,
-      zoom: 14
+      zoom: 14,
+      clickedLocation: ''
     };
     _this.zoomIn = _this.zoomIn.bind(_assertThisInitialized(_this));
     _this.zoomOut = _this.zoomOut.bind(_assertThisInitialized(_this));
     _this.zoomToLocation = _this.zoomToLocation.bind(_assertThisInitialized(_this));
+    _this.handleMarkerClick = _this.handleMarkerClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -610,7 +616,7 @@ function (_Component) {
         });
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading...")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "map-panel"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(pigeon_maps__WEBPACK_IMPORTED_MODULE_5___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.clickedLocation), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(pigeon_maps__WEBPACK_IMPORTED_MODULE_5___default.a, {
         center: [this.state.mapLatitude, this.state.mapLongitude],
         zoom: this.state.zoom,
         width: 600,
@@ -623,7 +629,10 @@ function (_Component) {
           src: "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png",
           width: 30,
           height: 30,
-          alt: ""
+          alt: "",
+          onClick: function onClick() {
+            return _this2.handleMarkerClick(location.name);
+          }
         }));
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
