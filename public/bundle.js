@@ -308,7 +308,7 @@ var Navbar = function Navbar(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "COOKIE RATER"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, isLoggedIn ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/home"
   }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
-    to: "/myreviews"
+    to: "/reviews/me"
   }, "My Reviews"), isAdmin && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/users"
   }, "Users"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -532,10 +532,11 @@ var Review = function Review(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_review__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/review */ "./client/store/review.js");
-/* harmony import */ var _store_location__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/location */ "./client/store/location.js");
-/* harmony import */ var _review__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./review */ "./client/components/review.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_review__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/review */ "./client/store/review.js");
+/* harmony import */ var _store_location__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/location */ "./client/store/location.js");
+/* harmony import */ var _review__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./review */ "./client/components/review.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -553,6 +554,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
  //----
@@ -576,7 +578,7 @@ function (_Component) {
   _createClass(Reviews, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      if (this.props.match.path === '/myreviews') {
+      if (this.props.match.path === '/reviews/me') {
         this.props.getReviewsByUser();
       } else {
         this.props.getReviewsByLocation(this.props.match.params.locId);
@@ -586,12 +588,14 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var reviewsToRender = this.props.match.path === '/myreviews' ? this.props.reviewsByUser : this.props.reviewsByLocation;
-      var title = this.props.match.path === '/myreviews' ? 'My Reviews' : "".concat(this.props.location.name, " || Average Rating: TBI");
+      var reviewsToRender = this.props.match.path === '/reviews/me' ? this.props.reviewsByUser : this.props.reviewsByLocation;
+      var title = this.props.match.path === '/reviews/me' ? 'My Reviews' : "".concat(this.props.location.name, " || Average Rating: TBI");
       return reviewsToRender ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-top"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), reviewsToRender.map(function (review) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review__WEBPACK_IMPORTED_MODULE_4__["Review"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), this.props.userIsApproved && this.props.match.path !== '/reviews/me' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/reviews/".concat(this.props.location.id, "/add")
+      }, "Add Review"), reviewsToRender.map(function (review) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review__WEBPACK_IMPORTED_MODULE_5__["Review"], {
           key: review.id,
           review: review
         });
@@ -604,6 +608,7 @@ function (_Component) {
 
 var mapState = function mapState(state, ownProps) {
   return {
+    userIsApproved: state.user.type === 'approved' || state.user.type === 'admin',
     reviewsByUser: state.review.reviewsByUser,
     reviewsByLocation: state.review.reviewsByLocation,
     location: state.location.singleLocation,
@@ -614,18 +619,18 @@ var mapState = function mapState(state, ownProps) {
 var mapDispatch = function mapDispatch(dispatch) {
   return {
     getReviewsByUser: function getReviewsByUser() {
-      return dispatch(Object(_store_review__WEBPACK_IMPORTED_MODULE_2__["getReviewsByUser"])());
+      return dispatch(Object(_store_review__WEBPACK_IMPORTED_MODULE_3__["getReviewsByUser"])());
     },
     getReviewsByLocation: function getReviewsByLocation(locId) {
-      return dispatch(Object(_store_review__WEBPACK_IMPORTED_MODULE_2__["getReviewsByLocation"])(locId));
+      return dispatch(Object(_store_review__WEBPACK_IMPORTED_MODULE_3__["getReviewsByLocation"])(locId));
     },
     getSingleLocation: function getSingleLocation(locId) {
-      return dispatch(Object(_store_location__WEBPACK_IMPORTED_MODULE_3__["getSingleLocation"])(locId));
+      return dispatch(Object(_store_location__WEBPACK_IMPORTED_MODULE_4__["getSingleLocation"])(locId));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapState, mapDispatch)(Reviews));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapState, mapDispatch)(Reviews));
 
 /***/ }),
 
@@ -979,7 +984,7 @@ function (_Component) {
         path: "/home",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["UserHome"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        path: "/myreviews",
+        path: "/reviews/me",
         component: _components_reviews__WEBPACK_IMPORTED_MODULE_5__["default"]
       }), isApproved && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,

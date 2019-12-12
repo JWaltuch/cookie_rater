@@ -28,7 +28,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
-            <Route path="/myreviews" component={Reviews} />
+            <Route path="/reviews/me" component={Reviews} />
             {isApproved && (
               <Route exact path="/reviews/:locId/add" component={ReviewForm} />
             )}
