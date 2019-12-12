@@ -50,12 +50,12 @@ class UserHome extends Component {
       mapLatitude: location.latitude,
       mapLongitude: location.longitude,
       zoom: 18,
-      clickedLocation: location.name
+      clickedLocation: `${location.name} | ${location.address}`
     })
   }
 
-  handleMarkerClick = locName => {
-    this.setState({clickedLocation: locName})
+  handleMarkerClick = (locName, locAddress) => {
+    this.setState({clickedLocation: `${locName} | ${locAddress}`})
   }
 
   render() {
@@ -96,7 +96,9 @@ class UserHome extends Component {
                       width={30}
                       height={30}
                       alt=""
-                      onClick={() => this.handleMarkerClick(location.name)}
+                      onClick={() =>
+                        this.handleMarkerClick(location.name, location.address)
+                      }
                     />
                   </Overlay>
                 ))}

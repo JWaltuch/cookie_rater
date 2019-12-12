@@ -6,6 +6,9 @@ export const Location = props => {
   return (
     <div className="location" onClick={() => props.zoomToLocation(location)}>
       <h2>{location.name}</h2>
+      {location.address}
+      <br />
+      <br />
       {location.notes && (
         <div>
           {location.notes}

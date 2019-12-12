@@ -268,7 +268,7 @@ var Location = function Location(props) {
     onClick: function onClick() {
       return props.zoomToLocation(location);
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, location.name), location.notes && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, location.notes, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, location.name), location.address, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), location.notes && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, location.notes, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/reviews/".concat(props.location.id)
   }, "Reviews | "), props.userIsApproved && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/reviews/".concat(props.location.id, "/add")
@@ -724,13 +724,13 @@ function (_Component) {
         mapLatitude: location.latitude,
         mapLongitude: location.longitude,
         zoom: 18,
-        clickedLocation: location.name
+        clickedLocation: "".concat(location.name, " | ").concat(location.address)
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "handleMarkerClick", function (locName) {
+    _defineProperty(_assertThisInitialized(_this), "handleMarkerClick", function (locName, locAddress) {
       _this.setState({
-        clickedLocation: locName
+        clickedLocation: "".concat(locName, " | ").concat(locAddress)
       });
     });
 
@@ -787,7 +787,7 @@ function (_Component) {
           height: 30,
           alt: "",
           onClick: function onClick() {
-            return _this2.handleMarkerClick(location.name);
+            return _this2.handleMarkerClick(location.name, location.address);
           }
         }));
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
