@@ -37,7 +37,6 @@ nav a {
   overflow: scroll;
   height: 130vh;
   margin: auto 2%;
-  /* margin-right: 60vw; */
 }
 
 .location {
@@ -56,7 +55,6 @@ nav a {
   top: 0vh;
   background-color: tan;
   width: 100%;
-  right: 0vw;
 }
 
 .logo {
@@ -75,8 +73,6 @@ nav a {
 .map-panel {
   display: flex;
   flex-direction: column;
-  /* position: fixed;
-  margin-left: 25vw; */
 }
 
 /* FORMS */
@@ -93,4 +89,30 @@ nav a {
 
 .review-form div {
   margin: 5px;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .panel {
+    height: 40vh;
+    flex-direction: row;
+  }
+  .map-panel {
+    width: 50vw;
+  }
+  .page-top {
+    top: 20vh;
+  }
+  .header {
+    display: inline-block;
+  }
+  .location {
+    /* height: 50vh; */
+    min-width: 50vw;
+  }
 }
