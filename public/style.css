@@ -35,7 +35,7 @@ nav a {
   display: flex;
   flex-direction: column;
   overflow: scroll;
-  height: 10%;
+  height: 130vh;
   margin: auto 2%;
   /* margin-right: 60vw; */
 }
