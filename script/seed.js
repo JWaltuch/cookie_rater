@@ -75,12 +75,6 @@ async function seed() {
       longitude: -73.98587
     },
     {
-      name: 'Culture Espresso',
-      address: '247 W 36th St, New York, NY 10018',
-      latitude: 40.75325,
-      longitude: -73.99126
-    },
-    {
       name: 'EJs Luncheonette',
       address: '1271 3rd Ave, New York, NY 10021',
       latitude: 40.77044,
@@ -127,23 +121,11 @@ async function seed() {
         'First cookies to be baked in space! Available at multiple locations'
     },
     {
-      name: 'Dominique Ansel',
-      address: '189 Spring St, New York, NY 10012',
-      latitude: 40.72516,
-      longitude: -74.00296
-    },
-    {
       name: 'Macaron Parlour',
       address: '44 Hester St, New York, NY 10002',
       latitude: 40.7155,
       longitude: -73.99022,
       notes: 'XL Pecan Chocolate Chip'
-    },
-    {
-      name: 'Kreuther Handcrafted Chocolate',
-      address: '43 W 42nd St, New York, NY 10036',
-      latitude: 40.75447,
-      longitude: -73.98275
     },
     {
       name: 'The Wooly Daily',

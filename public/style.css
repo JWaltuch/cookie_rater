@@ -34,36 +34,49 @@ nav a {
 .panel {
   display: flex;
   flex-direction: column;
-  margin-right: 60vw;
+  overflow: scroll;
+  height: 10%;
+  margin: auto 2%;
+  /* margin-right: 60vw; */
 }
 
 .location {
   border: black solid 1px;
-  padding: 5px;
-  margin: 5px;
+  padding: 1vw;
+  margin: 1vw;
 }
 
-/* OTHER */
+/* NAVBAR */
 
 .header {
   position: fixed;
   display: flex;
   align-items: center;
   z-index: 1;
-  top: 0px;
+  top: 0vh;
   background-color: tan;
+  width: 100%;
+  right: 0vw;
 }
+
+.logo {
+  padding-left: 2vw;
+}
+
+/* OTHER */
 
 .page-top {
   position: relative;
-  top: 60px;
+  top: 20vh;
+  margin: 0 auto;
+  width: 80%;
 }
 
 .map-panel {
   display: flex;
   flex-direction: column;
-  position: fixed;
-  margin-left: 25vw;
+  /* position: fixed;
+  margin-left: 25vw; */
 }
 
 /* FORMS */
