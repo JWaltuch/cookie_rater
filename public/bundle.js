@@ -777,9 +777,7 @@ function (_Component) {
         className: "map-panel"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.clickedLocation), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(pigeon_maps__WEBPACK_IMPORTED_MODULE_5___default.a, {
         center: [this.state.mapLatitude, this.state.mapLongitude],
-        zoom: this.state.zoom,
-        width: 600,
-        height: 450
+        zoom: this.state.zoom
       }, this.props.locations && this.props.locations.map(function (location) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(pigeon_overlay__WEBPACK_IMPORTED_MODULE_7___default.a, {
           key: location.id,

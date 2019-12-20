@@ -65,7 +65,7 @@ nav a {
 
 .page-top {
   position: relative;
-  top: 20vh;
+  top: 10vh;
   margin: 0 auto;
   width: 80%;
 }
@@ -73,6 +73,8 @@ nav a {
 .map-panel {
   display: flex;
   flex-direction: column;
+  height: 450px;
+  width: 600px;
 }
 
 /* FORMS */
@@ -103,7 +105,8 @@ nav a {
     flex-direction: row;
   }
   .map-panel {
-    max-width: 50vw;
+    width: 100vw;
+    height: 30vh;
   }
   .page-top {
     top: 20vh;

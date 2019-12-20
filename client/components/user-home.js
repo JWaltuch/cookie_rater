@@ -82,8 +82,6 @@ class UserHome extends Component {
             <Map
               center={[this.state.mapLatitude, this.state.mapLongitude]}
               zoom={this.state.zoom}
-              width={600}
-              height={450}
             >
               {this.props.locations &&
                 this.props.locations.map(location => (
