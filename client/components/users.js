@@ -3,8 +3,6 @@ import {connect} from 'react-redux'
 //----
 import {getReviewsByLocation, getReviewsByUser} from '../store/review'
 import {getSingleLocation} from '../store/location'
-//----
-import {User} from './user'
 
 class Users extends Component {
   componentDidMount() {
@@ -39,7 +37,8 @@ class Users extends Component {
 const mapState = (state, ownProps) => {
   return {
     userIsApproved:
-      state.user.type === 'approved' || state.user.type === 'admin',
+      state.user.currentUser.type === 'approved' ||
+      state.user.currentUser.type === 'admin',
     reviewsByUser: state.review.reviewsByUser,
     reviewsByLocation: state.review.reviewsByLocation,
     location: state.location.singleLocation,

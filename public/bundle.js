@@ -330,8 +330,8 @@ var Navbar = function Navbar(_ref) {
 
 var mapState = function mapState(state) {
   return {
-    isLoggedIn: !!state.user.id,
-    isAdmin: state.user.type === 'admin'
+    isLoggedIn: !!state.user.currentUser.id,
+    isAdmin: state.user.currentUser.type === 'admin'
   };
 };
 
@@ -611,7 +611,7 @@ function (_Component) {
 
 var mapState = function mapState(state, ownProps) {
   return {
-    userIsApproved: state.user.type === 'approved' || state.user.type === 'admin',
+    userIsApproved: state.user.currentUser.type === 'approved' || state.user.currentUser.type === 'admin',
     reviewsByUser: state.review.reviewsByUser,
     reviewsByLocation: state.review.reviewsByLocation,
     location: state.location.singleLocation,
@@ -812,8 +812,8 @@ function (_Component) {
 
 var mapState = function mapState(state) {
   return {
-    email: state.user.email,
-    userIsApproved: state.user.type === 'approved' || state.user.type === 'admin',
+    email: state.user.currentUser.email,
+    userIsApproved: state.user.currentUser.type === 'approved' || state.user.type === 'admin',
     locations: state.location.allLocations
   };
 };
@@ -837,17 +837,6 @@ UserHome.propTypes = {
 
 /***/ }),
 
-/***/ "./client/components/user.js":
-/*!***********************************!*\
-  !*** ./client/components/user.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
 /***/ "./client/components/users.js":
 /*!************************************!*\
   !*** ./client/components/users.js ***!
@@ -862,8 +851,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_review__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/review */ "./client/store/review.js");
 /* harmony import */ var _store_location__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/location */ "./client/store/location.js");
-/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./user */ "./client/components/user.js");
-/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_user__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -885,8 +872,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
  //----
 
-
- //----
 
 
 
@@ -931,7 +916,7 @@ function (_Component) {
 
 var mapState = function mapState(state, ownProps) {
   return {
-    userIsApproved: state.user.type === 'approved' || state.user.type === 'admin',
+    userIsApproved: state.user.currentUser.type === 'approved' || state.user.currentUser.type === 'admin',
     reviewsByUser: state.review.reviewsByUser,
     reviewsByLocation: state.review.reviewsByLocation,
     location: state.location.singleLocation,
@@ -1099,15 +1084,15 @@ function (_Component) {
         exact: true,
         path: "/reviews/:locId/add",
         component: _components_review_form__WEBPACK_IMPORTED_MODULE_7__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      }), isAdmin && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        path: "/users",
+        component: _components_users__WEBPACK_IMPORTED_MODULE_6__["default"]
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/reviews/:locId",
         component: _components_reviews__WEBPACK_IMPORTED_MODULE_5__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["UserHome"]
-      })), isAdmin && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        path: "/users",
-        component: _components_users__WEBPACK_IMPORTED_MODULE_6__["default"]
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         component: _components__WEBPACK_IMPORTED_MODULE_4__["Login"]
       }));
@@ -1125,9 +1110,9 @@ var mapState = function mapState(state) {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id,
-    isAdmin: state.user.type === 'admin',
-    isApproved: state.user.type === 'approved' || state.user.type === 'admin'
+    isLoggedIn: !!state.user.currentUser.id,
+    isAdmin: state.user.currentUser.type === 'admin',
+    isApproved: state.user.currentUser.type === 'approved' || state.user.type === 'admin'
   };
 };
 
@@ -1177,7 +1162,7 @@ socket.on('connect', function () {
 /*!*******************************!*\
   !*** ./client/store/index.js ***!
   \*******************************/
-/*! exports provided: default, me, auth, logout */
+/*! exports provided: default, me, auth, getUsers, updatedUsers, logout */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1194,6 +1179,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "me", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["me"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "auth", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["auth"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getUsers", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["getUsers"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "updatedUsers", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["updatedUsers"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["logout"]; });
 
@@ -1846,17 +1835,25 @@ var destroyReview = function destroyReview(id) {
 /*!******************************!*\
   !*** ./client/store/user.js ***!
   \******************************/
-/*! exports provided: me, auth, logout, default */
+/*! exports provided: me, auth, getUsers, updatedUsers, logout, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "me", function() { return me; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "auth", function() { return auth; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUsers", function() { return getUsers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatedUsers", function() { return updatedUsers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../history */ "./client/history.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -1868,20 +1865,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  */
 
 var GET_USER = 'GET_USER';
+var GOT_USERS = 'GOT_USERS';
+var UPDATE_USERS = 'UPDATE_USERS';
 var REMOVE_USER = 'REMOVE_USER';
 /**
  * INITIAL STATE
  */
 
-var defaultUser = {};
-/**
- * ACTION CREATORS
- */
+var defaultUser = {
+  currentUser: [],
+  allUsers: []
+  /**
+   * ACTION CREATORS
+   */
+
+};
 
 var getUser = function getUser(user) {
   return {
     type: GET_USER,
     user: user
+  };
+};
+
+var gotUsers = function gotUsers(users) {
+  return {
+    type: GOT_USERS,
+    users: users
+  };
+};
+
+var updateUsers = function updateUsers(updatedUser) {
+  return {
+    type: UPDATE_USERS,
+    updatedUser: updatedUser
   };
 };
 
@@ -1989,42 +2006,128 @@ var auth = function auth(email, password, method) {
     }()
   );
 };
-var logout = function logout() {
+var getUsers = function getUsers() {
   return (
     /*#__PURE__*/
     function () {
       var _ref3 = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee3(dispatch) {
+        var _ref4, data;
+
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.prev = 0;
                 _context3.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/users');
+
+              case 3:
+                _ref4 = _context3.sent;
+                data = _ref4.data;
+                dispatch(gotUsers(data));
+                _context3.next = 11;
+                break;
+
+              case 8:
+                _context3.prev = 8;
+                _context3.t0 = _context3["catch"](0);
+                console.error(_context3.t0);
+
+              case 11:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 8]]);
+      }));
+
+      return function (_x3) {
+        return _ref3.apply(this, arguments);
+      };
+    }()
+  );
+};
+var updatedUsers = function updatedUsers(id) {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref5 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee4(dispatch) {
+        var _ref6, data;
+
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                _context4.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/users".concat(id));
+
+              case 3:
+                _ref6 = _context4.sent;
+                data = _ref6.data;
+                dispatch(updateUsers(data));
+                _context4.next = 11;
+                break;
+
+              case 8:
+                _context4.prev = 8;
+                _context4.t0 = _context4["catch"](0);
+                console.error(_context4.t0);
+
+              case 11:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, null, [[0, 8]]);
+      }));
+
+      return function (_x4) {
+        return _ref5.apply(this, arguments);
+      };
+    }()
+  );
+};
+var logout = function logout() {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref7 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee5(dispatch) {
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.prev = 0;
+                _context5.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/auth/logout');
 
               case 3:
                 dispatch(removeUser());
                 _history__WEBPACK_IMPORTED_MODULE_1__["default"].push('/login');
-                _context3.next = 10;
+                _context5.next = 10;
                 break;
 
               case 7:
-                _context3.prev = 7;
-                _context3.t0 = _context3["catch"](0);
-                console.error(_context3.t0);
+                _context5.prev = 7;
+                _context5.t0 = _context5["catch"](0);
+                console.error(_context5.t0);
 
               case 10:
               case "end":
-                return _context3.stop();
+                return _context5.stop();
             }
           }
-        }, _callee3, null, [[0, 7]]);
+        }, _callee5, null, [[0, 7]]);
       }));
 
-      return function (_x3) {
-        return _ref3.apply(this, arguments);
+      return function (_x5) {
+        return _ref7.apply(this, arguments);
       };
     }()
   );
@@ -2039,10 +2142,30 @@ var logout = function logout() {
 
   switch (action.type) {
     case GET_USER:
-      return action.user;
+      return _objectSpread({}, state, {
+        currentUser: action.user
+      });
 
     case REMOVE_USER:
-      return defaultUser;
+      return _objectSpread({}, state, {
+        currentUser: []
+      });
+
+    case GOT_USERS:
+      return _objectSpread({}, state, {
+        allUsers: action.users
+      });
+
+    case UPDATE_USERS:
+      {
+        var _updatedUsers = state.allUsers.filter(function (user) {
+          return user.id !== action.updatedUser.id;
+        });
+
+        return _objectSpread({}, state, {
+          allUsers: _updatedUsers
+        });
+      }
 
     default:
       return state;

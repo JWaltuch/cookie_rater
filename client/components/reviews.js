@@ -48,7 +48,8 @@ class Reviews extends Component {
 const mapState = (state, ownProps) => {
   return {
     userIsApproved:
-      state.user.type === 'approved' || state.user.type === 'admin',
+      state.user.currentUser.type === 'approved' ||
+      state.user.currentUser.type === 'admin',
     reviewsByUser: state.review.reviewsByUser,
     reviewsByLocation: state.review.reviewsByLocation,
     location: state.location.singleLocation,

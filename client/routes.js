@@ -32,14 +32,14 @@ class Routes extends Component {
             {isApproved && (
               <Route exact path="/reviews/:locId/add" component={ReviewForm} />
             )}
+            {isAdmin && (
+              <Switch>
+                {/* Routes placed here are only available if admin */}
+                <Route path="/users" component={Users} />
+              </Switch>
+            )}
             <Route path="/reviews/:locId" component={Reviews} />
             <Route path="/" component={UserHome} />
-          </Switch>
-        )}
-        {isAdmin && (
-          <Switch>
-            {/* Routes placed here are only available if admin */}
-            <Route path="/users" component={Users} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
@@ -56,9 +56,10 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id,
-    isAdmin: state.user.type === 'admin',
-    isApproved: state.user.type === 'approved' || state.user.type === 'admin'
+    isLoggedIn: !!state.user.currentUser.id,
+    isAdmin: state.user.currentUser.type === 'admin',
+    isApproved:
+      state.user.currentUser.type === 'approved' || state.user.type === 'admin'
   }
 }
 
