@@ -93,6 +93,18 @@ nav a {
   margin: 5px;
 }
 
+/* USERS */
+
+.user-list {
+  display: flex;
+  padding: 2vw;
+}
+
+button {
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
+
 /* MEDIA QUERIES */
 
 @media (max-width: 600px) {

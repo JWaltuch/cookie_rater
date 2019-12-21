@@ -15,19 +15,13 @@ class Users extends Component {
   handleClick(type, id) {
     this.props.updateUsers(id, type)
   }
-
-  //display list of users
-  //display approve button for unapproved users
-  //display unapprove for other users?
-  //onclick, approve button approves users
-  //takes a req.body with a type, and a userid in params
   render() {
     let userIsAdmin = this.props.userIsAdmin
     return userIsAdmin ? (
       <div className="page-top">
         <h2>Users</h2>
         {this.props.allUsers.map(user => (
-          <div key={user.id}>
+          <div className="user-list" key={user.id}>
             {user.username}
             {user.type === null && (
               <button onClick={() => this.handleClick('approved', user.id)}>

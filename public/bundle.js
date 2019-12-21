@@ -813,7 +813,7 @@ function (_Component) {
 var mapState = function mapState(state) {
   return {
     email: state.user.currentUser.email,
-    userIsApproved: state.user.currentUser.type === 'approved' || state.user.type === 'admin',
+    userIsApproved: state.user.currentUser.type === 'approved' || state.user.currentUser.type === 'admin',
     locations: state.location.allLocations
   };
 };
@@ -897,12 +897,7 @@ function (_Component) {
     key: "handleClick",
     value: function handleClick(type, id) {
       this.props.updateUsers(id, type);
-    } //display list of users
-    //display approve button for unapproved users
-    //display unapprove for other users?
-    //onclick, approve button approves users
-    //takes a req.body with a type, and a userid in params
-
+    }
   }, {
     key: "render",
     value: function render() {
@@ -913,6 +908,7 @@ function (_Component) {
         className: "page-top"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Users"), this.props.allUsers.map(function (user) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "user-list",
           key: user.id
         }, user.username, user.type === null && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
