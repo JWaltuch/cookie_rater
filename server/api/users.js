@@ -31,8 +31,10 @@ router.get('/reviews', async (req, res, next) => {
 
 router.put('/:userId', async (req, res, next) => {
   try {
-    const type = req.body.type
-    const user = await User.update({type, where: {id: req.params.userId}})
+    const user = await User.update(
+      {type: req.body.type},
+      {where: {id: req.params.userId}}
+    )
     res.json(user)
   } catch (err) {
     next(err)

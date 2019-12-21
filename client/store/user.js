@@ -6,7 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const GOT_USERS = 'GOT_USERS'
-const UPDATE_USERS = 'UPDATE_USERS'
+const UPDATED_USERS = 'UPDATED_USERS'
 const REMOVE_USER = 'REMOVE_USER'
 
 /**
@@ -19,7 +19,7 @@ const defaultUser = {currentUser: [], allUsers: []}
  */
 const getUser = user => ({type: GET_USER, user})
 const gotUsers = users => ({type: GOT_USERS, users})
-const updateUsers = updatedUser => ({type: UPDATE_USERS, updatedUser})
+const updatedUsers = updatedUser => ({type: UPDATED_USERS, updatedUser})
 const removeUser = () => ({type: REMOVE_USER})
 
 /**
@@ -59,10 +59,10 @@ export const getUsers = () => async dispatch => {
   }
 }
 
-export const updatedUsers = id => async dispatch => {
+export const updateUsers = (id, type) => async dispatch => {
   try {
-    let {data} = await axios.put(`/api/users${id}`)
-    dispatch(updateUsers(data))
+    let {data} = await axios.put(`/api/users/${id}`, {type})
+    dispatch(updatedUsers(data))
   } catch (error) {
     console.error(error)
   }
@@ -89,11 +89,11 @@ export default function(state = defaultUser, action) {
       return {...state, currentUser: []}
     case GOT_USERS:
       return {...state, allUsers: action.users}
-    case UPDATE_USERS: {
-      let updatedUsers = state.allUsers.filter(user => {
+    case UPDATED_USERS: {
+      let newUsers = state.allUsers.filter(user => {
         return user.id !== action.updatedUser.id
       })
-      return {...state, allUsers: updatedUsers}
+      return {...state, allUsers: newUsers}
     }
     default:
       return state

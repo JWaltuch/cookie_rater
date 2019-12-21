@@ -849,8 +849,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_review__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/review */ "./client/store/review.js");
-/* harmony import */ var _store_location__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/location */ "./client/store/location.js");
+/* harmony import */ var _store_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/user */ "./client/store/user.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -861,9 +860,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -874,22 +873,31 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
 var Users =
 /*#__PURE__*/
 function (_Component) {
   _inherits(Users, _Component);
 
   function Users() {
+    var _this;
+
     _classCallCheck(this, Users);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Users).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Users).call(this));
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Users, [{
     key: "componentDidMount",
-    value: function componentDidMount() {} //get users
-    //display list of users
+    value: function componentDidMount() {
+      this.props.getUsers();
+    }
+  }, {
+    key: "handleClick",
+    value: function handleClick(type, id) {
+      this.props.updateUsers(id, type);
+    } //display list of users
     //display approve button for unapproved users
     //display unapprove for other users?
     //onclick, approve button approves users
@@ -898,15 +906,23 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return reviewsToRender ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      var _this2 = this;
+
+      var userIsAdmin = this.props.userIsAdmin;
+      return userIsAdmin ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-top"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), this.props.userIsApproved && this.props.match.path !== '/reviews/me' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Link, {
-        to: "/reviews/".concat(this.props.location.id, "/add")
-      }, "Add Review"), reviewsToRender.map(function (review) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Review, {
-          key: review.id,
-          review: review
-        });
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Users"), this.props.allUsers.map(function (user) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: user.id
+        }, user.username, user.type === null && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.handleClick('approved', user.id);
+          }
+        }, "Approve"), user.type === 'approved' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.handleClick(null, user.id);
+          }
+        }, "Unapprove"));
       })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading");
     }
   }]);
@@ -914,26 +930,20 @@ function (_Component) {
   return Users;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-var mapState = function mapState(state, ownProps) {
+var mapState = function mapState(state) {
   return {
-    userIsApproved: state.user.currentUser.type === 'approved' || state.user.currentUser.type === 'admin',
-    reviewsByUser: state.review.reviewsByUser,
-    reviewsByLocation: state.review.reviewsByLocation,
-    location: state.location.singleLocation,
-    match: ownProps.match
+    userIsAdmin: state.user.currentUser.type === 'admin',
+    allUsers: state.user.allUsers
   };
 };
 
 var mapDispatch = function mapDispatch(dispatch) {
   return {
-    getReviewsByUser: function getReviewsByUser() {
-      return dispatch(Object(_store_review__WEBPACK_IMPORTED_MODULE_2__["getReviewsByUser"])());
+    getUsers: function getUsers() {
+      return dispatch(Object(_store_user__WEBPACK_IMPORTED_MODULE_2__["getUsers"])());
     },
-    getReviewsByLocation: function getReviewsByLocation(locId) {
-      return dispatch(Object(_store_review__WEBPACK_IMPORTED_MODULE_2__["getReviewsByLocation"])(locId));
-    },
-    getSingleLocation: function getSingleLocation(locId) {
-      return dispatch(Object(_store_location__WEBPACK_IMPORTED_MODULE_3__["getSingleLocation"])(locId));
+    updateUsers: function updateUsers(id, type) {
+      return dispatch(Object(_store_user__WEBPACK_IMPORTED_MODULE_2__["updateUsers"])(id, type));
     }
   };
 };
@@ -1162,7 +1172,7 @@ socket.on('connect', function () {
 /*!*******************************!*\
   !*** ./client/store/index.js ***!
   \*******************************/
-/*! exports provided: default, me, auth, getUsers, updatedUsers, logout */
+/*! exports provided: default, me, auth, getUsers, updateUsers, logout */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1182,7 +1192,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getUsers", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["getUsers"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "updatedUsers", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["updatedUsers"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "updateUsers", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["updateUsers"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["logout"]; });
 
@@ -1835,7 +1845,7 @@ var destroyReview = function destroyReview(id) {
 /*!******************************!*\
   !*** ./client/store/user.js ***!
   \******************************/
-/*! exports provided: me, auth, getUsers, updatedUsers, logout, default */
+/*! exports provided: me, auth, getUsers, updateUsers, logout, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1843,7 +1853,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "me", function() { return me; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "auth", function() { return auth; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUsers", function() { return getUsers; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatedUsers", function() { return updatedUsers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUsers", function() { return updateUsers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -1866,7 +1876,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var GET_USER = 'GET_USER';
 var GOT_USERS = 'GOT_USERS';
-var UPDATE_USERS = 'UPDATE_USERS';
+var UPDATED_USERS = 'UPDATED_USERS';
 var REMOVE_USER = 'REMOVE_USER';
 /**
  * INITIAL STATE
@@ -1895,9 +1905,9 @@ var gotUsers = function gotUsers(users) {
   };
 };
 
-var updateUsers = function updateUsers(updatedUser) {
+var updatedUsers = function updatedUsers(updatedUser) {
   return {
-    type: UPDATE_USERS,
+    type: UPDATED_USERS,
     updatedUser: updatedUser
   };
 };
@@ -2049,7 +2059,7 @@ var getUsers = function getUsers() {
     }()
   );
 };
-var updatedUsers = function updatedUsers(id) {
+var updateUsers = function updateUsers(id, type) {
   return (
     /*#__PURE__*/
     function () {
@@ -2064,12 +2074,14 @@ var updatedUsers = function updatedUsers(id) {
               case 0:
                 _context4.prev = 0;
                 _context4.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/users".concat(id));
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/users/".concat(id), {
+                  type: type
+                });
 
               case 3:
                 _ref6 = _context4.sent;
                 data = _ref6.data;
-                dispatch(updateUsers(data));
+                dispatch(updatedUsers(data));
                 _context4.next = 11;
                 break;
 
@@ -2156,14 +2168,13 @@ var logout = function logout() {
         allUsers: action.users
       });
 
-    case UPDATE_USERS:
+    case UPDATED_USERS:
       {
-        var _updatedUsers = state.allUsers.filter(function (user) {
+        var newUsers = state.allUsers.filter(function (user) {
           return user.id !== action.updatedUser.id;
         });
-
         return _objectSpread({}, state, {
-          allUsers: _updatedUsers
+          allUsers: newUsers
         });
       }
 
