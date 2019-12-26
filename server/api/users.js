@@ -29,14 +29,43 @@ router.get('/reviews', async (req, res, next) => {
 
 //ADMIN ONLY
 
-router.put('/:userId', async (req, res, next) => {
+const checkIfAdmin = (req, res, next) => {
+  console.log(req)
   try {
-    const user = await User.update(
-      {type: req.body.type},
-      {where: {id: req.params.userId}}
-    )
-    res.json(user)
+    if (req.user.type === 'admin') {
+      next()
+    } else {
+      let error = new Error('You must be an admin to perform this action.')
+      return next(error)
+    }
   } catch (err) {
     next(err)
   }
-})
+}
+
+router.put(
+  '/:userId',
+  function(req, res, next) {
+    try {
+      if (req.user.type === 'admin') {
+        next()
+      } else {
+        let error = new Error('You must be an admin to perform this action.')
+        return next(error)
+      }
+    } catch (err) {
+      next(err)
+    }
+  },
+  async (req, res, next) => {
+    try {
+      const [, user] = await User.update(
+        {type: req.body.type},
+        {where: {id: req.params.userId}}
+      )
+      res.json(user)
+    } catch (err) {
+      next(err)
+    }
+  }
+)
