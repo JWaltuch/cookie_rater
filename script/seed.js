@@ -43,74 +43,23 @@ async function seed() {
       notes: 'Multiple locations'
     },
     {
-      name: 'Sprinkles Cupcakes',
-      address: '780 Lexington Ave, New York, NY 10065',
-      latitude: 40.76326,
-      longitude: -73.96766
-    },
-    {
-      name: 'Pret A Manger',
-      address: '1 Astor Pl, New York, NY 10003',
-      latitude: 40.73016,
-      longitude: -73.9923,
-      notes: 'Multiple locations'
-    },
-    {
-      name: 'Ovenly',
-      address: '230 Park Ave, New York, NY 10169',
-      latitude: 40.7544,
-      longitude: -73.97683,
-      notes: 'Multiple locations'
-    },
-    {
-      name: 'Baked',
-      address: '359 Van Brunt St, Brooklyn, NY 11231',
-      latitude: 40.67687,
-      longitude: -74.01325
-    },
-    {
-      name: 'Seven Grams Caffe',
-      address: '780 Lexington Ave, New York, NY 10065',
-      latitude: 40.74398,
-      longitude: -73.98587
-    },
-    {
-      name: 'EJs Luncheonette',
-      address: '1271 3rd Ave, New York, NY 10021',
-      latitude: 40.77044,
-      longitude: -73.95972
-    },
-    {
-      name: 'Mottley Kitchen',
-      address: '402 E 140th St, The Bronx, NY 10454',
-      latitude: 40.81016,
-      longitude: -73.92166
-    },
-    {
-      name: 'Spot Dessert Bar',
-      address: '13 St Marks Pl, New York, NY 10003',
-      latitude: 40.72938,
-      longitude: -73.98892,
-      notes: 'Multiple locations'
-    },
-    {
-      name: 'Michaeli Bakery',
-      address: '115A Division St, New York, NY 10002',
-      latitude: 40.71434,
-      longitude: -73.99205
-    },
-    {
-      name: 'Mollys Cupcakes',
-      address: '228 Bleecker St, New York, NY 10014',
-      latitude: 40.73011,
-      longitude: -74.00251
-    },
-    {
       name: 'The Standard Grill',
       address: '848 Washington St, New York, NY 10014',
       latitude: 40.74066,
       longitude: -74.00801,
       notes: 'Fancy cookies. They come in threes, with milk'
+    },
+    {
+      name: 'The Wooly Daily',
+      address: '11 Barclay St, New York, NY 10007',
+      latitude: 40.71244,
+      longitude: -74.00829
+    },
+    {
+      name: 'Seven Grams Caffe',
+      address: '76 Madison Ave, New York, NY 10016',
+      latitude: 40.74398,
+      longitude: -73.98587
     },
     {
       name: 'DoubleTree by Hilton Hotel',
@@ -121,17 +70,17 @@ async function seed() {
         'First cookies to be baked in space! Available at multiple locations'
     },
     {
-      name: 'Macaron Parlour',
-      address: '44 Hester St, New York, NY 10002',
-      latitude: 40.7155,
-      longitude: -73.99022,
-      notes: 'XL Pecan Chocolate Chip'
+      name: 'Ovenly',
+      address: '230 Park Ave, New York, NY 10169',
+      latitude: 40.7544,
+      longitude: -73.97683,
+      notes: 'Multiple locations'
     },
     {
-      name: 'The Wooly Daily',
-      address: '11 Barclay St, New York, NY 10007',
-      latitude: 40.71244,
-      longitude: -74.00829
+      name: 'Petrossian',
+      address: '911 7th Ave, New York, NY 10019',
+      latitude: 40.76593,
+      longitude: -73.97914
     }
   ])
 
