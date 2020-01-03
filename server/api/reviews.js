@@ -37,7 +37,20 @@ router.post('/', async (req, res, next) => {
 
 //ADMIN ROUTE ONLY
 
-router.delete('/:reviewId', async (req, res, next) => {
+const checkIfAdmin = (req, res, next) => {
+  try {
+    if (req.user.type === 'admin') {
+      next()
+    } else {
+      let error = new Error('You must be an admin to perform this action.')
+      return next(error)
+    }
+  } catch (err) {
+    next(err)
+  }
+}
+
+router.delete('/:reviewId', checkIfAdmin, async (req, res, next) => {
   try {
     const review = await Review.findOne({where: {id: req.params.reviewId}})
     await Review.destroy({where: {id: req.params.reviewId}})

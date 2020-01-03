@@ -519,7 +519,11 @@ __webpack_require__.r(__webpack_exports__);
 var Review = function Review(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "location"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Rating: ", props.review.rating), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Reason: ", props.review.reason));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Rating: ", props.review.rating), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Reason: ", props.review.reason), props.userIsAdmin && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return props.destroyReview(props.review.id);
+    }
+  }, "Delete Review"));
 };
 
 /***/ }),
@@ -591,8 +595,21 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
+      //Determine if we are rendering user reviews or location reviews
+      //Load appropriate reviews
       var reviewsToRender = this.props.match.path === '/reviews/me' ? this.props.reviewsByUser : this.props.reviewsByLocation;
-      var title = this.props.match.path === '/reviews/me' ? 'My Reviews' : "".concat(this.props.location.name, " || Average Rating: TBI");
+      var avgRating = 0; //Set review average if this is a location review page
+
+      if (this.props.reviewsByLocation.length > 0) {
+        avgRating = reviewsToRender.reduce(function (accumulator, review) {
+          return accumulator + review.rating;
+        }, 0) / reviewsToRender.length;
+      } //Set title based on type of review page
+
+
+      var title = this.props.match.path === '/reviews/me' ? 'My Reviews' : "".concat(this.props.location.name, " || Average Rating: ").concat(avgRating);
       return reviewsToRender ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-top"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), this.props.userIsApproved && this.props.match.path !== '/reviews/me' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -600,7 +617,9 @@ function (_Component) {
       }, "Add Review"), reviewsToRender.map(function (review) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review__WEBPACK_IMPORTED_MODULE_5__["Review"], {
           key: review.id,
-          review: review
+          review: review,
+          destroyReview: _this.props.destroyReview,
+          userIsAdmin: _this.props.userIsAdmin
         });
       })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading");
     }
@@ -612,6 +631,7 @@ function (_Component) {
 var mapState = function mapState(state, ownProps) {
   return {
     userIsApproved: state.user.currentUser.type === 'approved' || state.user.currentUser.type === 'admin',
+    userIsAdmin: state.user.currentUser.type === 'admin',
     reviewsByUser: state.review.reviewsByUser,
     reviewsByLocation: state.review.reviewsByLocation,
     location: state.location.singleLocation,
@@ -629,6 +649,9 @@ var mapDispatch = function mapDispatch(dispatch) {
     },
     getSingleLocation: function getSingleLocation(locId) {
       return dispatch(Object(_store_location__WEBPACK_IMPORTED_MODULE_4__["getSingleLocation"])(locId));
+    },
+    destroyReview: function destroyReview(locId) {
+      return dispatch(Object(_store_review__WEBPACK_IMPORTED_MODULE_3__["destroyReview"])(locId));
     }
   };
 };
@@ -740,7 +763,7 @@ function (_Component) {
     _this.state = {
       mapLatitude: 40.739936,
       mapLongitude: -73.995801,
-      zoom: 14,
+      zoom: 13,
       clickedLocation: ''
     };
     _this.zoomIn = _this.zoomIn.bind(_assertThisInitialized(_this));
@@ -1090,10 +1113,10 @@ function (_Component) {
         exact: true,
         path: "/reviews/:locId/add",
         component: _components_review_form__WEBPACK_IMPORTED_MODULE_7__["default"]
-      }), isAdmin && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      }), isAdmin && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/users",
         component: _components_users__WEBPACK_IMPORTED_MODULE_6__["default"]
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/reviews/:locId",
         component: _components_reviews__WEBPACK_IMPORTED_MODULE_5__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {

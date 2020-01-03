@@ -19,7 +19,7 @@ class UserHome extends Component {
     this.state = {
       mapLatitude: 40.739936,
       mapLongitude: -73.995801,
-      zoom: 14,
+      zoom: 13,
       clickedLocation: ''
     }
     this.zoomIn = this.zoomIn.bind(this)

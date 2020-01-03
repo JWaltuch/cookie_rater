@@ -32,12 +32,7 @@ class Routes extends Component {
             {isApproved && (
               <Route exact path="/reviews/:locId/add" component={ReviewForm} />
             )}
-            {isAdmin && (
-              <Switch>
-                {/* Routes placed here are only available if admin */}
-                <Route path="/users" component={Users} />
-              </Switch>
-            )}
+            {isAdmin && <Route path="/users" component={Users} />}
             <Route path="/reviews/:locId" component={Reviews} />
             <Route path="/" component={UserHome} />
           </Switch>
