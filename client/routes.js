@@ -54,7 +54,8 @@ const mapState = state => {
     isLoggedIn: !!state.user.currentUser.id,
     isAdmin: state.user.currentUser.type === 'admin',
     isApproved:
-      state.user.currentUser.type === 'approved' || state.user.type === 'admin'
+      state.user.currentUser.type === 'approved' ||
+      state.user.currentUser.type === 'admin'
   }
 }
 
