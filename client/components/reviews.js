@@ -41,7 +41,7 @@ class Reviews extends Component {
       this.props.match.path === '/reviews/me'
         ? 'My Reviews'
         : `${this.props.location.name} || Average Rating: ${avgRating}`
-    return reviewsToRender ? (
+    return reviewsToRender && this.props.userIsApproved ? (
       <div className="page-top">
         <h2>{title}</h2>
         {this.props.userIsApproved &&
@@ -60,7 +60,11 @@ class Reviews extends Component {
         ))}
       </div>
     ) : (
-      <div>Loading</div>
+      <div className="page-top">
+        <br />
+        <br />
+        <div>Pending approval...</div>
+      </div>
     )
   }
 }

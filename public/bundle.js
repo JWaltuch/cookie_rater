@@ -159,9 +159,7 @@ var AuthForm = function AuthForm(props) {
     type: "password"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit"
-  }, displayName)), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "/auth/google"
-  }, displayName, " with Google"));
+  }, displayName)), error && error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", error.response.data, " ")));
 };
 /**
  * CONTAINER
@@ -610,7 +608,7 @@ function (_Component) {
 
 
       var title = this.props.match.path === '/reviews/me' ? 'My Reviews' : "".concat(this.props.location.name, " || Average Rating: ").concat(avgRating);
-      return reviewsToRender ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return reviewsToRender && this.props.userIsApproved ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-top"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), this.props.userIsApproved && this.props.match.path !== '/reviews/me' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/reviews/".concat(this.props.location.id, "/add")
@@ -621,7 +619,9 @@ function (_Component) {
           destroyReview: _this.props.destroyReview,
           userIsAdmin: _this.props.userIsAdmin
         });
-      })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading");
+      })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "page-top"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Pending approval..."));
     }
   }]);
 
