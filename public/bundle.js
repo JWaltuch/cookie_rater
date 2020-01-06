@@ -785,7 +785,7 @@ function (_Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-top"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome, ", this.props.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome, ", this.props.email), this.props.userIsApproved ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "panel"
@@ -822,7 +822,7 @@ function (_Component) {
         onClick: function onClick() {
           return _this2.zoomOut();
         }
-      }, "Zoom Out"))));
+      }, "Zoom Out"))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Your account is pending approval."));
     }
   }]);
 
