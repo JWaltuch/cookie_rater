@@ -75,12 +75,6 @@ async function seed() {
       latitude: 40.7544,
       longitude: -73.97683,
       notes: 'Multiple locations'
-    },
-    {
-      name: 'Petrossian',
-      address: '911 7th Ave, New York, NY 10019',
-      latitude: 40.76593,
-      longitude: -73.97914
     }
   ])
 
