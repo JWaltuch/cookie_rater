@@ -148,6 +148,11 @@ var AuthForm = function AuthForm(props) {
     onSubmit: handleSubmit,
     name: name
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "username"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Username")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    name: "username",
+    type: "text"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "email"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     name: "email",
@@ -193,7 +198,8 @@ var mapDispatch = function mapDispatch(dispatch) {
       var formName = evt.target.name;
       var email = evt.target.email.value;
       var password = evt.target.password.value;
-      dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_3__["auth"])(email, password, formName));
+      var username = evt.target.username.value;
+      dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_3__["auth"])(email, password, formName, username));
     }
   };
 };
@@ -1982,7 +1988,7 @@ var me = function me() {
     }()
   );
 };
-var auth = function auth(email, password, method) {
+var auth = function auth(email, password, method, username) {
   return (
     /*#__PURE__*/
     function () {
@@ -1998,7 +2004,8 @@ var auth = function auth(email, password, method) {
                 _context2.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/auth/".concat(method), {
                   email: email,
-                  password: password
+                  password: password,
+                  username: username
                 });
 
               case 3:
