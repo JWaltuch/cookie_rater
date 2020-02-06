@@ -16,11 +16,11 @@ export const Location = props => {
           <br />
         </div>
       )}
-      <Link to={`/reviews/${props.location.id}`}>Reviews | </Link>
+      {/* <Link to={`/reviews/${props.location.id}`}>Reviews | </Link> */}
       {props.userIsApproved && (
-        <Link to={`/reviews/${props.location.id}/add`}> Add Review |</Link>
+        <Link to={`/reviews/${props.location.id}/add`}> Add Review | </Link>
       )}
-      <div onClick={() => props.zoomToLocation(location)}>Go To On Map</div>
+      <span onClick={() => props.zoomToLocation(location)}>Go To On Map</span>
     </div>
   )
 }
