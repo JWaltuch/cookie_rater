@@ -56,6 +56,7 @@ class Reviews extends Component {
             review={review}
             destroyReview={this.props.destroyReview}
             userIsAdmin={this.props.userIsAdmin}
+            userId={this.props.userId}
           />
         ))}
       </div>
@@ -78,7 +79,8 @@ const mapState = (state, ownProps) => {
     reviewsByUser: state.review.reviewsByUser,
     reviewsByLocation: state.review.reviewsByLocation,
     location: state.location.singleLocation,
-    match: ownProps.match
+    match: ownProps.match,
+    userId: state.user.currentUser.id
   }
 }
 

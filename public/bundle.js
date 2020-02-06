@@ -528,7 +528,11 @@ var Review = function Review(props) {
     onClick: function onClick() {
       return props.destroyReview(props.review.id);
     }
-  }, "Delete Review"));
+  }, "Delete Review"), props.userId === props.review.userId && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return props.editReview(props.review.id);
+    }
+  }, "Edit Review"));
 };
 
 /***/ }),
@@ -624,7 +628,8 @@ function (_Component) {
           key: review.id,
           review: review,
           destroyReview: _this.props.destroyReview,
-          userIsAdmin: _this.props.userIsAdmin
+          userIsAdmin: _this.props.userIsAdmin,
+          userId: _this.props.userId
         });
       })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-top"
@@ -642,7 +647,8 @@ var mapState = function mapState(state, ownProps) {
     reviewsByUser: state.review.reviewsByUser,
     reviewsByLocation: state.review.reviewsByLocation,
     location: state.location.singleLocation,
-    match: ownProps.match
+    match: ownProps.match,
+    userId: state.user.currentUser.id
   };
 };
 
