@@ -22,7 +22,9 @@ export const Location = props => {
       {props.userIsApproved && (
         <Link to={`/reviews/${props.location.id}/add`}> Add Review | </Link>
       )}
-      <span onClick={() => props.zoomToLocation(location)}>Go To On Map</span>
+      <span onClick={() => props.zoomToLocation(location)}>
+        Zoom To Location
+      </span>
     </div>
   )
 }

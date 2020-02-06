@@ -277,7 +277,7 @@ var Location = function Location(props) {
     onClick: function onClick() {
       return props.zoomToLocation(location);
     }
-  }, "Go To On Map"));
+  }, "Zoom To Location"));
 };
 
 /***/ }),
