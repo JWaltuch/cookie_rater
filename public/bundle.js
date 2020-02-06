@@ -269,7 +269,9 @@ var Location = function Location(props) {
   var location = props.location;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "location"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, location.name), location.address, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), location.notes && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, location.notes, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), props.userIsApproved && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/reviews/".concat(props.location.id)
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, location.name)), location.address, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), location.notes && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, location.notes, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), props.userIsApproved && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/reviews/".concat(props.location.id, "/add")
   }, " Add Review | "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     onClick: function onClick() {

@@ -5,7 +5,9 @@ export const Location = props => {
   let location = props.location
   return (
     <div className="location">
-      <h2>{location.name}</h2>
+      <Link to={`/reviews/${props.location.id}`}>
+        <h2>{location.name}</h2>
+      </Link>
       {location.address}
       <br />
       <br />
