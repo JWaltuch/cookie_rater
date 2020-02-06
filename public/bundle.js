@@ -147,7 +147,7 @@ var AuthForm = function AuthForm(props) {
     className: "auth-form",
     onSubmit: handleSubmit,
     name: name
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+  }, displayName === 'Sign Up' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "username"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Username")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     name: "username",
@@ -198,7 +198,7 @@ var mapDispatch = function mapDispatch(dispatch) {
       var formName = evt.target.name;
       var email = evt.target.email.value;
       var password = evt.target.password.value;
-      var username = evt.target.username.value;
+      var username = evt.target.username ? evt.target.username.value : '';
       dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_3__["auth"])(email, password, formName, username));
     }
   };
@@ -268,15 +268,16 @@ __webpack_require__.r(__webpack_exports__);
 var Location = function Location(props) {
   var location = props.location;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "location",
-    onClick: function onClick() {
-      return props.zoomToLocation(location);
-    }
+    className: "location"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, location.name), location.address, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), location.notes && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, location.notes, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/reviews/".concat(props.location.id)
   }, "Reviews | "), props.userIsApproved && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/reviews/".concat(props.location.id, "/add")
-  }, " Add Review"));
+  }, " Add Review |"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return props.zoomToLocation(location);
+    }
+  }, "Go To On Map"));
 };
 
 /***/ }),
@@ -47556,7 +47557,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
