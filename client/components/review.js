@@ -10,11 +10,11 @@ export const Review = props => {
           Delete Review
         </button>
       )}
-      {props.userId === props.review.userId && (
+      {/* {props.userId === props.review.userId && (
         <button onClick={() => props.editReview(props.review.id)}>
           Edit Review
         </button>
-      )}
+      )} */}
     </div>
   )
 }
