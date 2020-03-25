@@ -40,7 +40,9 @@ class Reviews extends Component {
     let title =
       this.props.match.path === '/reviews/me'
         ? 'My Reviews'
-        : `${this.props.location.name} || Average Rating: ${avgRating}`
+        : `${this.props.location.name} || Average Rating: ${avgRating.toFixed(
+            2
+          )}`
     return reviewsToRender && this.props.userIsApproved ? (
       <div className="page-top">
         <h2>{title}</h2>
