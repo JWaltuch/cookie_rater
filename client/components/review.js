@@ -3,7 +3,7 @@ import React from 'react'
 export const Review = props => {
   return (
     <div className="location">
-      <div>Rating: {props.review.rating}</div>
+      <div>Rating: {props.review.rating.toFixed(2)}</div>
       <div>Reason: {props.review.reason}</div>
       {props.userIsAdmin && (
         <button onClick={() => props.destroyReview(props.review.id)}>
