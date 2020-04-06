@@ -158,7 +158,7 @@ var AuthForm = function AuthForm(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Email:")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     name: "email",
     id: "email",
-    type: "text"
+    type: "email"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "password"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Password:")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -40882,7 +40882,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

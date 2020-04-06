@@ -24,7 +24,7 @@ const AuthForm = props => {
           <label htmlFor="email">
             <small>Email:</small>
           </label>
-          <input name="email" id="email" type="text" />
+          <input name="email" id="email" type="email" />
         </div>
         <div>
           <label htmlFor="password">
