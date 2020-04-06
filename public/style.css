@@ -17,11 +17,6 @@ nav a {
   margin: 1em;
 }
 
-.auth-form div {
-  margin: 1em;
-  display: inline-block;
-}
-
 /* CUSTOM */
 
 /* LOCATIONS  */
@@ -84,6 +79,17 @@ img {
 }
 
 /* FORMS */
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(220, 203, 181);
+}
+
+.auth-form div {
+  margin: 1em;
+}
 
 .reason-input {
   width: 500px;

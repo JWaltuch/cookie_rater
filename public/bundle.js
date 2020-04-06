@@ -149,17 +149,17 @@ var AuthForm = function AuthForm(props) {
     name: name
   }, displayName === 'Sign Up' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "username"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Username")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Username:")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     name: "username",
     type: "text"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "email"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Email:")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     name: "email",
     type: "text"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "password"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Password:")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     name: "password",
     type: "password"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
