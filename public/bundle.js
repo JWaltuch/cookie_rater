@@ -314,7 +314,7 @@ var Navbar = function Navbar(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "header"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "cookie-banner.png"
+    src: "/cookie-banner.png"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/home",
     className: "logo"
@@ -332,7 +332,7 @@ var Navbar = function Navbar(_ref) {
   }, "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/signup"
   }, "Sign Up"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "cookie-banner.png"
+    src: "/cookie-banner.png"
   }));
 };
 /**
