@@ -527,7 +527,7 @@ __webpack_require__.r(__webpack_exports__);
 var Review = function Review(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "location"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Rating: ", props.review.rating.toFixed(2)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Reason: ", props.review.reason), props.userIsAdmin && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Rating: ", props.review.rating), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Reason: ", props.review.reason), props.userIsAdmin && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return props.destroyReview(props.review.id);
     }
