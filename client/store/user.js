@@ -8,11 +8,12 @@ const GET_USER = 'GET_USER'
 const GOT_USERS = 'GOT_USERS'
 const UPDATED_USERS = 'UPDATED_USERS'
 const REMOVE_USER = 'REMOVE_USER'
+const DISPLAY_ERROR = 'DISPLAY_ERROR'
 
 /**
  * INITIAL STATE
  */
-const defaultUser = {currentUser: [], allUsers: []}
+const defaultUser = {currentUser: [], allUsers: [], error: {}}
 
 /**
  * ACTION CREATORS
@@ -21,6 +22,7 @@ const getUser = user => ({type: GET_USER, user})
 const gotUsers = users => ({type: GOT_USERS, users})
 const updatedUsers = updatedUser => ({type: UPDATED_USERS, updatedUser})
 const removeUser = () => ({type: REMOVE_USER})
+const displayError = error => ({type: DISPLAY_ERROR, error})
 
 /**
  * THUNK CREATORS
@@ -39,7 +41,7 @@ export const auth = (email, password, method, username) => async dispatch => {
   try {
     res = await axios.post(`/auth/${method}`, {email, password, username})
   } catch (authError) {
-    return dispatch(getUser({error: authError}))
+    return dispatch(displayError(authError))
   }
 
   try {
@@ -95,6 +97,8 @@ export default function(state = defaultUser, action) {
       })
       return {...state, allUsers: newUsers}
     }
+    case DISPLAY_ERROR:
+      return {...state, error: action.error}
     default:
       return state
   }

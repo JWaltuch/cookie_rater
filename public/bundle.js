@@ -1910,13 +1910,15 @@ var GET_USER = 'GET_USER';
 var GOT_USERS = 'GOT_USERS';
 var UPDATED_USERS = 'UPDATED_USERS';
 var REMOVE_USER = 'REMOVE_USER';
+var DISPLAY_ERROR = 'DISPLAY_ERROR';
 /**
  * INITIAL STATE
  */
 
 var defaultUser = {
   currentUser: [],
-  allUsers: []
+  allUsers: [],
+  error: {}
   /**
    * ACTION CREATORS
    */
@@ -1947,6 +1949,13 @@ var updatedUsers = function updatedUsers(updatedUser) {
 var removeUser = function removeUser() {
   return {
     type: REMOVE_USER
+  };
+};
+
+var displayError = function displayError(error) {
+  return {
+    type: DISPLAY_ERROR,
+    error: error
   };
 };
 /**
@@ -2023,9 +2032,7 @@ var auth = function auth(email, password, method, username) {
               case 6:
                 _context2.prev = 6;
                 _context2.t0 = _context2["catch"](0);
-                return _context2.abrupt("return", dispatch(getUser({
-                  error: _context2.t0
-                })));
+                return _context2.abrupt("return", dispatch(displayError(_context2.t0)));
 
               case 9:
                 try {
@@ -2210,6 +2217,11 @@ var logout = function logout() {
           allUsers: newUsers
         });
       }
+
+    case DISPLAY_ERROR:
+      return _objectSpread({}, state, {
+        error: action.error
+      });
 
     default:
       return state;
