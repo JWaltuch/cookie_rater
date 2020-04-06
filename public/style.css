@@ -41,7 +41,7 @@ nav a {
   border: black solid 1px;
   background-color: tan;
   padding: 1vw;
-  margin: 1vw;
+  margin: 0vw 1vw 1vw 1vw;
 }
 
 /* NAVBAR */
