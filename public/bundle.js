@@ -2194,7 +2194,8 @@ var logout = function logout() {
   switch (action.type) {
     case GET_USER:
       return _objectSpread({}, state, {
-        currentUser: action.user
+        currentUser: action.user,
+        error: {}
       });
 
     case REMOVE_USER:
