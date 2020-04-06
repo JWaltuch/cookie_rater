@@ -25,7 +25,7 @@ export const Location = props => {
         </button>
       )}
       <button onClick={() => props.zoomToLocation(location)}>
-        <a>Zoom To Location</a>
+        Zoom To Location
       </button>
     </div>
   )
