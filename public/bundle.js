@@ -280,7 +280,7 @@ var Location = function Location(props) {
     onClick: function onClick() {
       return props.zoomToLocation(location);
     }
-  }, "Zoom To Location"));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Zoom To Location")));
 };
 
 /***/ }),
