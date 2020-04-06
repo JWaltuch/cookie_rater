@@ -29,7 +29,7 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
         </div>
       )}
     </nav>
-    <img src="/cookie-banner.png" />
+    <img className="img-on-mobile" src="/cookie-banner.png" />
   </div>
 )
 

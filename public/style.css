@@ -160,7 +160,7 @@ button a:hover {
     justify-content: center;
   }
   .panel {
-    height: 40vh;
+    height: 50vh;
     flex-direction: row;
   }
   .map-panel {
@@ -180,7 +180,25 @@ button a:hover {
     min-width: 50vw;
   }
 
-  img {
+  .img-on-mobile {
     display: none;
+  }
+
+  img {
+    width: 20vw;
+    height: 10vh;
+  }
+
+  textarea {
+    border: solid black 1px;
+  }
+
+  nav a {
+    margin-top: 0em;
+    margin-left: 3vw;
+  }
+
+  h1 {
+    margin-left: 3vw;
   }
 }
