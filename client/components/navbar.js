@@ -6,8 +6,9 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
   <div className="header">
+    <img src="https://lh3.googleusercontent.com/proxy/KOZQZG3XDaLzOsA8caPV3IIw9V2KjMDV6iV0Rop5mid2YBACRpo2Ap-UpU5gBEfT1VBm1S6sehAPMSRYSJufIrl_5R_vGZ9hgeXbzrV-2duQLh5Umw" />
     <Link to="/home" className="logo">
-      <h1>COOKIE RATER</h1>
+      <h1>XCOOKIE RATERX</h1>
     </Link>
     <nav>
       {isLoggedIn ? (
