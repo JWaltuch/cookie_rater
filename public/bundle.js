@@ -151,16 +151,19 @@ var AuthForm = function AuthForm(props) {
     htmlFor: "username"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Username:")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     name: "username",
+    id: "username",
     type: "text"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "email"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Email:")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     name: "email",
+    id: "email",
     type: "text"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "password"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Password:")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     name: "password",
+    id: "password",
     type: "password"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit"
@@ -454,7 +457,8 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "rating"
       }, "Rating: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-        name: "rating"
+        name: "rating",
+        id: "rating"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: 1
       }, "1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -478,7 +482,8 @@ function (_Component) {
       }, "10"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "reason"
       }, "Justify Your Rating:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        name: "reason"
+        name: "reason",
+        id: "reason"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
       }, "Submit")), this.props.error && this.props.error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", this.props.error.response.data, " ")));

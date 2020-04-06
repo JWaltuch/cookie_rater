@@ -36,7 +36,7 @@ class ReviewForm extends Component {
         >
           <div>
             <label htmlFor="rating">Rating: </label>
-            <select name="rating">
+            <select name="rating" id="rating">
               <option value={1}>1</option>
               <option value={2}>2</option>
               <option value={3}>3</option>
@@ -51,7 +51,7 @@ class ReviewForm extends Component {
           </div>
           <div>
             <label htmlFor="reason">Justify Your Rating:</label>
-            <textarea name="reason" />
+            <textarea name="reason" id="reason" />
           </div>
           <div>
             <button type="submit">Submit</button>
