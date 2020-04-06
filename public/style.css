@@ -102,8 +102,18 @@ textarea {
 }
 
 button {
-  margin-left: 1vw;
-  margin-right: 1vw;
+  margin: 1vh;
+  padding: 1vh;
+  max-height: 50px;
+  background-color: tan;
+  border-radius: 28px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(225, 195, 156);
+  transform: translate(-1px, -1px);
 }
 
 /* OTHER */
