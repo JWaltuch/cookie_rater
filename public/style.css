@@ -109,6 +109,7 @@ button {
   border-radius: 28px;
   border: 1px solid black;
   cursor: pointer;
+  font-size: 16px;
 }
 
 button:hover {
