@@ -30,8 +30,7 @@ nav a {
   display: flex;
   flex-direction: column;
   overflow: scroll;
-  height: 50vh;
-  margin: auto 2%;
+  height: 60vh;
 }
 
 .location {
