@@ -274,9 +274,9 @@ var Location = function Location(props) {
     className: "location"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/reviews/".concat(props.location.id)
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, location.name)), location.address, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), location.notes && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, location.notes, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), props.userIsApproved && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, location.name)), location.address, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), location.notes && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, location.notes, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), props.userIsApproved && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/reviews/".concat(props.location.id, "/add")
-  }, " Add Review "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, " Add Review ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return props.zoomToLocation(location);
     }
@@ -484,7 +484,9 @@ function (_Component) {
       }, "Justify Your Rating:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         name: "reason",
         id: "reason"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-button"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
       }, "Submit")), this.props.error && this.props.error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", this.props.error.response.data, " ")));
     }
@@ -606,28 +608,38 @@ function (_Component) {
       }
     }
   }, {
+    key: "getReviewsToRender",
+    value: function getReviewsToRender() {
+      return this.props.match.path === '/reviews/me' ? this.props.reviewsByUser : this.props.reviewsByLocation;
+    }
+  }, {
+    key: "getAvgRating",
+    value: function getAvgRating(reviewsToRender) {
+      return reviewsToRender.reduce(function (accumulator, review) {
+        return accumulator + review.rating;
+      }, 0) / reviewsToRender.length;
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this = this;
 
       //Determine if we are rendering user reviews or location reviews
       //Load appropriate reviews
-      var reviewsToRender = this.props.match.path === '/reviews/me' ? this.props.reviewsByUser : this.props.reviewsByLocation;
+      var reviewsToRender = this.getReviewsToRender();
       var avgRating = 0; //Set review average if this is a location review page
 
       if (this.props.reviewsByLocation.length > 0) {
-        avgRating = reviewsToRender.reduce(function (accumulator, review) {
-          return accumulator + review.rating;
-        }, 0) / reviewsToRender.length;
+        avgRating = this.getAvgRating(reviewsToRender);
       } //Set title based on type of review page
 
 
       var title = this.props.match.path === '/reviews/me' ? 'My Reviews' : "".concat(this.props.location.name, " || Average Rating: ").concat(avgRating.toFixed(2));
-      return reviewsToRender && this.props.userIsApproved ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return this.props.userIsApproved ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-top"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), this.props.userIsApproved && this.props.match.path !== '/reviews/me' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/reviews/".concat(this.props.location.id, "/add")
-      }, "Add Review"), reviewsToRender.map(function (review) {
+      }, "Add Review"), reviewsToRender.length > 0 ? reviewsToRender.map(function (review) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review__WEBPACK_IMPORTED_MODULE_5__["Review"], {
           key: review.id,
           review: review,
@@ -635,7 +647,9 @@ function (_Component) {
           userIsAdmin: _this.props.userIsAdmin,
           userId: _this.props.userId
         });
-      })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Visit some ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/"
+      }, "locations"), " and leave a review!")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-top"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Pending approval..."));
     }

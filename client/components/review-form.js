@@ -53,7 +53,7 @@ class ReviewForm extends Component {
             <label htmlFor="reason">Justify Your Rating:</label>
             <textarea name="reason" id="reason" />
           </div>
-          <div>
+          <div className="form-button">
             <button type="submit">Submit</button>
           </div>
           {this.props.error &&

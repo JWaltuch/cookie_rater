@@ -21,20 +21,28 @@ class Reviews extends Component {
     }
   }
 
+  getReviewsToRender() {
+    return this.props.match.path === '/reviews/me'
+      ? this.props.reviewsByUser
+      : this.props.reviewsByLocation
+  }
+
+  getAvgRating(reviewsToRender) {
+    return (
+      reviewsToRender.reduce((accumulator, review) => {
+        return accumulator + review.rating
+      }, 0) / reviewsToRender.length
+    )
+  }
+
   render() {
     //Determine if we are rendering user reviews or location reviews
     //Load appropriate reviews
-    let reviewsToRender =
-      this.props.match.path === '/reviews/me'
-        ? this.props.reviewsByUser
-        : this.props.reviewsByLocation
+    let reviewsToRender = this.getReviewsToRender()
     let avgRating = 0
     //Set review average if this is a location review page
     if (this.props.reviewsByLocation.length > 0) {
-      avgRating =
-        reviewsToRender.reduce((accumulator, review) => {
-          return accumulator + review.rating
-        }, 0) / reviewsToRender.length
+      avgRating = this.getAvgRating(reviewsToRender)
     }
     //Set title based on type of review page
     let title =
@@ -43,7 +51,7 @@ class Reviews extends Component {
         : `${this.props.location.name} || Average Rating: ${avgRating.toFixed(
             2
           )}`
-    return reviewsToRender && this.props.userIsApproved ? (
+    return this.props.userIsApproved ? (
       <div className="page-top">
         <h2>{title}</h2>
         {this.props.userIsApproved &&
@@ -52,15 +60,21 @@ class Reviews extends Component {
               Add Review
             </Link>
           )}
-        {reviewsToRender.map(review => (
-          <Review
-            key={review.id}
-            review={review}
-            destroyReview={this.props.destroyReview}
-            userIsAdmin={this.props.userIsAdmin}
-            userId={this.props.userId}
-          />
-        ))}
+        {reviewsToRender.length > 0 ? (
+          reviewsToRender.map(review => (
+            <Review
+              key={review.id}
+              review={review}
+              destroyReview={this.props.destroyReview}
+              userIsAdmin={this.props.userIsAdmin}
+              userId={this.props.userId}
+            />
+          ))
+        ) : (
+          <div>
+            Visit some <Link to="/">locations</Link> and leave a review!
+          </div>
+        )}
       </div>
     ) : (
       <div className="page-top">

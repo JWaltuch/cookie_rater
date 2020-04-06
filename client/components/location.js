@@ -20,7 +20,9 @@ export const Location = props => {
       )}
       {/* <Link to={`/reviews/${props.location.id}`}>Reviews | </Link> */}
       {props.userIsApproved && (
-        <Link to={`/reviews/${props.location.id}/add`}> Add Review </Link>
+        <button>
+          <Link to={`/reviews/${props.location.id}/add`}> Add Review </Link>
+        </button>
       )}
       <button onClick={() => props.zoomToLocation(location)}>
         Zoom To Location
