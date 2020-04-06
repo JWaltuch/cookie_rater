@@ -5,6 +5,11 @@ body {
 
 a {
   text-decoration: none;
+  color: #3a2917;
+}
+
+a:hover {
+  color: #6c5339;
 }
 
 label {
@@ -14,10 +19,6 @@ label {
 nav a {
   display: inline-block;
   margin: 1em;
-}
-
-a {
-  color: #3a2917;
 }
 
 /* CUSTOM */
