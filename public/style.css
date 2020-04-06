@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
   background-color: tan;
   color: rgb(89, 50, 50);
 }
@@ -60,6 +60,7 @@ nav a {
 
 .logo {
   padding-left: 2vw;
+  font-family: 'Fredoka One', Impact, 'Arial Narrow Bold', sans-serif;
 }
 
 img {
