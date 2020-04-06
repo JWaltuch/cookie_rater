@@ -108,7 +108,8 @@ input {
 }
 
 button {
-  margin: 1vh;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
   padding: 1vh;
   max-height: 50px;
   background-color: tan;
