@@ -478,8 +478,7 @@ function (_Component) {
       }, "10"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "reason"
       }, "Justify Your Rating:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        name: "reason",
-        className: "reason-input"
+        name: "reason"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
       }, "Submit")), this.props.error && this.props.error.response && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", this.props.error.response.data, " ")));

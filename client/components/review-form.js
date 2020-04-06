@@ -51,7 +51,7 @@ class ReviewForm extends Component {
           </div>
           <div>
             <label htmlFor="reason">Justify Your Rating:</label>
-            <textarea name="reason" className="reason-input" />
+            <textarea name="reason" />
           </div>
           <div>
             <button type="submit">Submit</button>

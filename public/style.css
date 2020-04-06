@@ -74,11 +74,6 @@ img {
   margin: 1em;
 }
 
-.reason-input {
-  width: 500px;
-  height: 250px;
-}
-
 .review-form {
   display: flex;
   flex-direction: column;
@@ -90,6 +85,10 @@ img {
 
 textarea {
   resize: none;
+  width: 70vw;
+  height: 30vh;
+  margin-top: 1em;
+  font-size: 16px;
 }
 
 /* USERS */
