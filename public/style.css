@@ -35,7 +35,7 @@ nav a {
   display: flex;
   flex-direction: column;
   overflow: scroll;
-  height: 130vh;
+  height: 50vh;
   margin: auto 2%;
 }
 
@@ -50,6 +50,7 @@ nav a {
 .header {
   position: fixed;
   display: flex;
+  justify-content: space-evenly;
   align-items: center;
   z-index: 1;
   top: 0vh;
@@ -61,11 +62,15 @@ nav a {
   padding-left: 2vw;
 }
 
+img {
+  max-height: 25vh;
+}
+
 /* OTHER */
 
 .page-top {
   position: relative;
-  top: 10vh;
+  top: 23vh;
   margin: 0 auto;
   width: 80%;
 }
@@ -73,7 +78,7 @@ nav a {
 .map-panel {
   display: flex;
   flex-direction: column;
-  height: 450px;
+  height: 400px;
   width: 600px;
 }
 
@@ -131,5 +136,9 @@ button {
   .location {
     /* height: 50vh; */
     min-width: 50vw;
+  }
+
+  img {
+    display: none;
   }
 }
