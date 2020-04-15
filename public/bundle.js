@@ -1140,7 +1140,12 @@ function (_Component) {
         component: _components__WEBPACK_IMPORTED_MODULE_4__["UserHome"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/reviews/me",
-        component: _components_reviews__WEBPACK_IMPORTED_MODULE_5__["default"]
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_reviews__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            key: "/reviews/me",
+            match: props.match
+          });
+        }
       }), isApproved && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/reviews/:locId/add",
@@ -1150,7 +1155,12 @@ function (_Component) {
         component: _components_users__WEBPACK_IMPORTED_MODULE_6__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/reviews/:locId",
-        component: _components_reviews__WEBPACK_IMPORTED_MODULE_5__["default"]
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_reviews__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            key: "/reviews/:loc",
+            match: props.match
+          });
+        }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["UserHome"]

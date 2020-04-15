@@ -28,12 +28,22 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
-            <Route path="/reviews/me" component={Reviews} />
+            <Route
+              path="/reviews/me"
+              render={props => (
+                <Reviews key="/reviews/me" match={props.match} />
+              )}
+            />
             {isApproved && (
               <Route exact path="/reviews/:locId/add" component={ReviewForm} />
             )}
             {isAdmin && <Route path="/users" component={Users} />}
-            <Route path="/reviews/:locId" component={Reviews} />
+            <Route
+              path="/reviews/:locId"
+              render={props => (
+                <Reviews key="/reviews/:loc" match={props.match} />
+              )}
+            />
             <Route path="/" component={UserHome} />
           </Switch>
         )}
