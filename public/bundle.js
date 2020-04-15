@@ -533,11 +533,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 var Review = function Review(props) {
+  var review = props.review,
+      destroyReview = props.destroyReview,
+      userIsAdmin = props.userIsAdmin;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "location"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Rating: ", props.review.rating), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Reason: ", props.review.reason), props.userIsAdmin && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, review.location && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, review.location.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Rating: ", review.rating), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Reason: ", review.reason), userIsAdmin && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
-      return props.destroyReview(props.review.id);
+      return destroyReview(props.review.id);
     }
   }, "Delete Review"));
 };
@@ -638,9 +641,9 @@ function (_Component) {
       var title = this.props.match.path === '/reviews/me' ? 'My Reviews' : "".concat(this.props.location.name, " || Average Rating: ").concat(avgRating.toFixed(2));
       return this.props.userIsApproved ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-top"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), this.props.userIsApproved && this.props.match.path !== '/reviews/me' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), this.props.userIsApproved && this.props.match.path !== '/reviews/me' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/reviews/".concat(this.props.location.id, "/add")
-      }, "Add Review"), reviewsToRender.length > 0 ? reviewsToRender.map(function (review) {
+      }, "Add Review")), reviewsToRender.length > 0 ? reviewsToRender.map(function (review) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review__WEBPACK_IMPORTED_MODULE_5__["Review"], {
           key: review.id,
           review: review,
@@ -648,9 +651,9 @@ function (_Component) {
           userIsAdmin: _this.props.userIsAdmin,
           userId: _this.props.userId
         });
-      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Visit some ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Visit some", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/"
-      }, "locations"), " and leave a review!")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Locations ")), "and leave a review!")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-top"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Pending approval..."));
     }

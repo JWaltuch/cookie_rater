@@ -56,9 +56,11 @@ class Reviews extends Component {
         <h2>{title}</h2>
         {this.props.userIsApproved &&
           this.props.match.path !== '/reviews/me' && (
-            <Link to={`/reviews/${this.props.location.id}/add`}>
-              Add Review
-            </Link>
+            <button>
+              <Link to={`/reviews/${this.props.location.id}/add`}>
+                Add Review
+              </Link>
+            </button>
           )}
         {reviewsToRender.length > 0 ? (
           reviewsToRender.map(review => (
@@ -113,7 +115,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(
-  mapState,
-  mapDispatch
-)(Reviews)
+export default connect(mapState, mapDispatch)(Reviews)

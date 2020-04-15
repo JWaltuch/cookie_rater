@@ -152,6 +152,10 @@ button a:hover {
   width: 600px;
 }
 
+h3 {
+  margin-top: 0px;
+}
+
 /* MEDIA QUERIES */
 
 @media (max-width: 600px) {

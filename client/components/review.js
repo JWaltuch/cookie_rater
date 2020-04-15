@@ -1,12 +1,14 @@
 import React from 'react'
 
 export const Review = props => {
+  const {review, destroyReview, userIsAdmin} = props
   return (
     <div className="location">
-      <div>Rating: {props.review.rating}</div>
-      <div>Reason: {props.review.reason}</div>
-      {props.userIsAdmin && (
-        <button onClick={() => props.destroyReview(props.review.id)}>
+      {review.location && <h3>{review.location.name}</h3>}
+      <div>Rating: {review.rating}</div>
+      <div>Reason: {review.reason}</div>
+      {userIsAdmin && (
+        <button onClick={() => destroyReview(props.review.id)}>
           Delete Review
         </button>
       )}
