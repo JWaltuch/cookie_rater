@@ -72,7 +72,11 @@ class Reviews extends Component {
           ))
         ) : (
           <div>
-            Visit some <Link to="/">locations</Link> and leave a review!
+            Visit some
+            <Link to="/">
+              <button>Locations </button>
+            </Link>
+            and leave a review!
           </div>
         )}
       </div>
@@ -109,4 +113,7 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Reviews)
+export default connect(
+  mapState,
+  mapDispatch
+)(Reviews)
